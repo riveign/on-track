@@ -1,0 +1,8 @@
+<h1>New Habit</h1>
+
+<%= simple_form_for @habit do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.association :habit_type, label_method: :name, value_method: :id, include_blank: false %>
+  <%= f.button :submit %>
+<% end %>
