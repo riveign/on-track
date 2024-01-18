@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HabitTypesController < ApplicationController
   def new
     @habit_type = HabitType.new
