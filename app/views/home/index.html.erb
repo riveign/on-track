@@ -6,6 +6,7 @@
       <% @daily_habits.each do |daily_habit| %>
         <li>
           <%= daily_habit.habit.name %>
+          <%= daily_habit.habit.habit_type.name %>
           <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit), method: :patch %>
         </li>
       <% end %>
@@ -18,11 +19,13 @@
   <% if @habits.any? %>
     <ul>
       <% @habits.each do |habit| %>
-        <li><%= habit.name %></li>
+        <li><%= habit.name %> - <%= habit.habit_type.name %></li>
       <% end %>
     </ul>
-
-    <%= link_to 'Add New Habit', new_habit_path, class: 'btn btn-primary' %>
+    <div>
+      <%= link_to 'Add New Habit', new_habit_path, class: 'btn btn-primary' %>
+        <%= link_to 'Create Habit Type', new_habit_type_path, class: 'btn btn-success'%>
+      </div>
   <% else %>
     <p>You have no habits listed. <%= link_to 'Create a new habit', new_habit_path %></p>
   <% end %>
