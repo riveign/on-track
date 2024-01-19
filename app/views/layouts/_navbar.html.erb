@@ -4,7 +4,6 @@
       <%= link_to 'On Track', root_path, class: 'navbar-brand' %>
       <div class="d-flex">
         <% if user_signed_in? %>
-            <%= link_to "Profile", edit_user_registration_path, class: 'nav-link' %>
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-outline-success' %>
         <% else %>
             <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
