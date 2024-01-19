@@ -1,13 +1,28 @@
 <% if user_signed_in? %>
-  <h2>Your Habits</h2>
+  <h2>Today's Habits</h2>
 
+  <% if @daily_habits.any? %>
+    <ul>
+      <% @daily_habits.each do |daily_habit| %>
+        <li>
+          <%= daily_habit.habit.name %>
+          <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit), method: :patch %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Congratulations! You have completed all your habits for today.</p>
+  <% end %>
+
+  <h2>Your Habits</h2>
   <% if @habits.any? %>
     <ul>
       <% @habits.each do |habit| %>
-        <li><%= habit.name %> - <%= habit.description %></li>
-        <!-- Add more details about the habit as needed -->
+        <li><%= habit.name %></li>
       <% end %>
     </ul>
+
+    <%= link_to 'Add New Habit', new_habit_path, class: 'btn btn-primary' %>
   <% else %>
     <p>You have no habits listed. <%= link_to 'Create a new habit', new_habit_path %></p>
   <% end %>

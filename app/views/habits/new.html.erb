@@ -4,5 +4,8 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.association :habit_type, label_method: :name, value_method: :id, include_blank: false %>
-  <%= f.button :submit %>
+  <div>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', root_path, class: 'btn btn-secondary'%>
+  </div>
 <% end %>

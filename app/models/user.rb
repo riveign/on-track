@@ -6,4 +6,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :habits, dependent: :destroy
+  has_many :daily_habits, dependent: :destroy
 end

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :habit_types
   resources :habits
-
+  resources :daily_habits do
+    member do
+      patch :mark_done
+    end
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end
