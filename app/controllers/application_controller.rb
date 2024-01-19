@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
     today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
 
     user.habits.left_outer_joins(:daily_habits)
-        .where(daily_habits: { created_at: today_range, done: false })
-        .or(user.habits.where.not(id: DailyHabit.select(:habit_id).where(created_at: today_range)))
+      .where.not(id: DailyHabit.select(:habit_id).where(created_at: today_range))
   end
 
   def create_daily_habits_for_user(user)
