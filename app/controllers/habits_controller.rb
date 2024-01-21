@@ -10,7 +10,14 @@ class HabitsController < ApplicationController
 
   def create
     @habit = current_user.habits.new(habit_params)
-    @habit.save!
+    if @habit.save!
+      respond_to do |format|
+        format.turbo_stream
+        format.html         { redirect_to root_path }
+      end
+    else
+      render :new
+    end
   end
 
   def destroy

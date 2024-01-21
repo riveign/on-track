@@ -12,7 +12,12 @@
 
     <!-- All Habits -->
   <div class="col-md-6">
-    <%= render 'habits/habit_list', habits: @habits %>
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        All Habits
+      </div>
+      <%= render 'habits/habit_list', habits: @habits %>
+    </div>
   </div>
 
   <!-- Call to Action Buttons -->
