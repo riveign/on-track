@@ -6,8 +6,8 @@ class DailyHabitsController < ApplicationController
       @daily_habits = find_daily_habits_for_user
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('daily_habits', partial: 'daily_habits/daily_habits_list',
-                                                                    locals: { daily_habits: @daily_habits })
+          render turbo_stream: turbo_stream.replace('daily_habits_list', partial: 'daily_habits/daily_habits_list',
+                                                                         locals: { daily_habits: @daily_habits })
         end
       end
     else

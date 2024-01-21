@@ -2,19 +2,23 @@
   <div class="row">
     <!-- Today's Habits -->
     <div class="col-md-6">
-      <%= render 'daily_habits/daily_habits_list', daily_habits: @daily_habits %>
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+          Today's Habits
+        </div>
+          <%= render partial: 'daily_habits/daily_habits_list', locals: { daily_habits: @daily_habits } %>
+    </div>
     </div>
 
     <!-- All Habits -->
-    <div class="col-md-6">
-      <%= render 'habits/habit_list', habits: @habits %>
+  <div class="col-md-6">
+    <%= render 'habits/habit_list', habits: @habits %>
   </div>
 
   <!-- Call to Action Buttons -->
   <div class="row mt-4">
-    <div class="col text-center">
-      <%= link_to 'Create New Habit', new_habit_path, class: 'btn btn-success me-2' %>
-      <%= link_to 'Create New Habit Type', new_habit_type_path, class: 'btn btn-dark' %>
+    <div id="new-habit">
+     <%= render 'habits/form', habit: Habit.new%>
     </div>
   </div>
 </div>

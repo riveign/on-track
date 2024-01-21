@@ -1,0 +1,7 @@
+<li id="<%= dom_id daily_habit %>" class="list-group-item d-flex justify-content-between align-items-center">
+  <span>
+    <%= daily_habit.habit.name %> - 
+    <em><%= daily_habit.habit.habit_type.name %></em>
+  </span>
+  <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit),data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-success' %>
+</li>

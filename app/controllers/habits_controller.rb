@@ -10,11 +10,7 @@ class HabitsController < ApplicationController
 
   def create
     @habit = current_user.habits.new(habit_params)
-    if @habit.save
-      redirect_to root_path, notice: 'Habit was successfully created.'
-    else
-      render :new
-    end
+    @habit.save!
   end
 
   def destroy
@@ -29,14 +25,12 @@ class HabitsController < ApplicationController
 
   def toggle_availability
     if @habit.update(disabled: @habit.disabled ? false : true)
-      @habits = current_user.habits.page(params[:page]).per(10)
       respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('habits', partial: 'habits/habit_list', locals: { habits: @habits })
-        end
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@habit) }
+        format.html         { redirect_to root_path }
       end
     else
-      redirect_to root_path, alert: 'Unable to update the habit.'
+      redirect_to root_path, alert: 'Something went wrong'
     end
   end
 

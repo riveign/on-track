@@ -1,25 +1,9 @@
-<%= turbo_frame_tag "daily_habits" do %>
-  <div class="card mb-4">
-    <% if daily_habits.empty? %>
-      <div class="card-body text-center">
-        <i class="fas fa-check-circle text-success" style="font-size: 2rem;"></i>
-        <p class="mt-3">All done for today! You're definitely staying <strong>On Track</strong>!</p>
-      </div>
-    <% else %>
-      <div class="card-header bg-success text-white">
-        Today's Habits
-      </div>
-      <ul class="list-group list-group-flush">
-        <% daily_habits.each do |daily_habit| %>
-          <li id="<%= dom_id daily_habit %>" class="list-group-item d-flex justify-content-between align-items-center">
-            <span>
-              <%= daily_habit.habit.name %> - 
-              <em><%= daily_habit.habit.habit_type.name %></em>
-            </span>
-            <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit), method: :patch, class: 'btn btn-outline-success' %>
-          </li>
-        <% end %>    
-      </ul>
-    <% end%>
-  </div>
-<% end %>
+<%= turbo_frame_tag "daily_habits_list" do %>
+  <% if daily_habits.empty? %>
+    <%= render partial: 'daily_habits/no_more_habits'%>
+  <% else %>
+    <ul class="list-group list-group-flush">
+      <%= render partial:'daily_habits/daily_habit', collection: daily_habits %>
+    </ul>
+  <% end %>
+<% end%>
