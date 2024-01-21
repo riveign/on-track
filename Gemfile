@@ -78,3 +78,5 @@ gem 'devise', '~> 4.9'
 gem 'simple_form', '~> 5.3'
 
 gem 'rubocop', '~> 1.60'
+
+gem "kaminari", "~> 1.2"

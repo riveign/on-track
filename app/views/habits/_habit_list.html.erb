@@ -1,14 +1,22 @@
-<div class="card">
-        <div class="card-header bg-dark text-white">
-          All Habits
-        </div>
-        <ul class="list-group list-group-flush">
-          <% habits.each do |habit| %>
-            <li class="list-group-item">
-              <%= habit.name %>
-              <!-- Add more habit details here -->
-            </li>
-          <% end %>
-        </ul>
-      </div>
+<%= turbo_frame_tag "habits" do %>
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      All Habits
     </div>
+    <ul class="list-group list-group-flush">
+        <% habits.each do |habit| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <%= habit.name %>
+            </span>
+            <div class="d-flex justify-content-between">
+              <%= button_to habit.disabled ? "Disable" : "Enable", toggle_availability_habit_path(habit), method: :patch, class: "btn btn-secondary" %>
+              <%= button_to "Delete", habit, method: :delete, data: { confirm: "Are you sure you want to delete this habit?" }, class: "btn btn-danger" %>
+            </div>
+          </li>
+        <% end %>    
+      </ul>
+  </div>
+  <%= paginate @habits, window: 0, outer_window: 3 %>
+</div>
+<% end %>

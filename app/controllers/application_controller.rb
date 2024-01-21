@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     habits_without_daily_habit = find_habits_without_daily_habit(user)
 
     habits_without_daily_habit.each do |habit|
-      habit.daily_habits.create!(user:, done: false)
+      habit.daily_habits.create!(user:, done: false) unless habit.disabled?
     end
   end
 

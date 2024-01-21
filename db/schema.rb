@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_19_080649) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_21_152138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_080649) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "disabled"
     t.index ["habit_type_id"], name: "index_habits_on_habit_type_id"
     t.index ["user_id"], name: "index_habits_on_user_id"
   end
