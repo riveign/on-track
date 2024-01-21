@@ -1,24 +1,32 @@
-# README
+# On Track
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+On Track is a Ruby on Rails application designed to assist users in building and maintaining daily habits. It provides a user-friendly platform for tracking daily activities, ensuring users stay on track with their personal development goals.
 
-Things you may want to cover:
+## Installation
+To set up On Track locally, follow these steps:
 
-* Ruby version
+### Pre-requisites
 
-* System dependencies
+1. PostgreSQL database
+2. Update Database.yml file with your PostgreSQL username and password
 
-* Configuration
+### Installation
 
-* Database creation
+1. Bundle install
+2. Rails db:create
+3. Rails de:migrate
+4. Bin/dev
 
-* Database initialization
+## Contributing
+Contributions to On Track are greatly appreciated. If you have ideas for improvement or encounter any issues, feel free to open an issue or submit a pull request.
 
-* How to run the test suite
+## License
+On Track is open-source software licensed under the MIT License. See the `LICENSE` file for more details.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Contact
+Project Maintainer: [Your Name] - [your-email@example.com](mailto:your-email@example.com)
 
-* Deployment instructions
-
-* ...
+## Acknowledgments
+- The Ruby on Rails Community for their invaluable resources
+- All contributors and users of the On Track application
