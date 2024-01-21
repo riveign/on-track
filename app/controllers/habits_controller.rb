@@ -10,7 +10,7 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.new(habit_params)
     if @habit.save
-      redirect_to habits_path, notice: 'Habit was successfully created.'
+      redirect_to root_path, notice: 'Habit was successfully created.'
     else
       render :new
     end

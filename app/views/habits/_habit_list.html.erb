@@ -1,0 +1,14 @@
+<div class="card">
+        <div class="card-header bg-dark text-white">
+          All Habits
+        </div>
+        <ul class="list-group list-group-flush">
+          <% habits.each do |habit| %>
+            <li class="list-group-item">
+              <%= habit.name %>
+              <!-- Add more habit details here -->
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>

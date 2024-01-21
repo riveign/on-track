@@ -1,35 +1,20 @@
-<% if user_signed_in? %>
-  <h2>Today's Habits</h2>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Today's Habits -->
+    <div class="col-md-6">
+      <%= render 'daily_habits/daily_habits_list', daily_habits: @daily_habits %>
+    </div>
 
-  <% if @daily_habits.any? %>
-    <ul>
-      <% @daily_habits.each do |daily_habit| %>
-        <li>
-          <%= daily_habit.habit.name %>
-          <%= daily_habit.habit.habit_type.name %>
-          <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit), method: :patch %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>Congratulations! You have completed all your habits for today.</p>
-  <% end %>
+    <!-- All Habits -->
+    <div class="col-md-6">
+      <%= render 'habits/habit_list', habits: @habits %>
+  </div>
 
-  <h2>Your Habits</h2>
-  <% if @habits.any? %>
-    <ul>
-      <% @habits.each do |habit| %>
-        <li><%= habit.name %> - <%= habit.habit_type.name %></li>
-      <% end %>
-    </ul>
-    <div>
-      <%= link_to 'Add New Habit', new_habit_path, class: 'btn btn-primary' %>
-        <%= link_to 'Create Habit Type', new_habit_type_path, class: 'btn btn-success'%>
-      </div>
-  <% else %>
-    <p>You have no habits listed. <%= link_to 'Create a new habit', new_habit_path %></p>
-  <% end %>
-<% else %>
-  <h1>Welcome to On Track</h1>
-  <p>Please <%= link_to 'log in', new_user_session_path %> to see your habits.</p>
-<% end %>
+  <!-- Call to Action Buttons -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <%= link_to 'Create New Habit', new_habit_path, class: 'btn btn-success me-2' %>
+      <%= link_to 'Create New Habit Type', new_habit_type_path, class: 'btn btn-dark' %>
+    </div>
+  </div>
+</div>
