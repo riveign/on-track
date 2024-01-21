@@ -2,7 +2,7 @@
 
 class HabitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit
+  before_action :set_habit, only: %i[show edit update destroy toggle_availability]
 
   def new
     @habit = Habit.new
@@ -22,9 +22,8 @@ class HabitsController < ApplicationController
 
     @habits = current_user.habits.page(params[:page]).per(10)
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('habits', partial: 'habits/habit_list', locals: { habits: @habits })
-      end
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@habit) }
+      format.html         { redirect_to root_path }
     end
   end
 
