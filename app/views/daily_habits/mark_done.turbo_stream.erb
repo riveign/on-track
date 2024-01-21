@@ -1,0 +1,1 @@
+<%= turbo_stream.replace "daily_habits_list", partial: "daily_habits/daily_habits_list", locals: { daily_habits: current_user.daily_habits.where(done: false) } %>
