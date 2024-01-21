@@ -25,7 +25,7 @@ Contributions to On Track are greatly appreciated. If you have ideas for improve
 On Track is open-source software licensed under the MIT License. See the `LICENSE` file for more details.
 
 ## Contact
-Project Maintainer: [Your Name] - [your-email@example.com](mailto:your-email@example.com)
+Project Maintainer: [Riveign] - [riveign@gmail.com](mailto:riveign@gmail.com)
 
 ## Acknowledgments
 - The Ruby on Rails Community for their invaluable resources
