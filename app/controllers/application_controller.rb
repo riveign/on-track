@@ -21,4 +21,9 @@ class ApplicationController < ActionController::Base
       habit.daily_habits.create!(user:, done: false)
     end
   end
+
+  def find_daily_habits_for_user
+    current_user.daily_habits.where(done: false,
+                                    created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
 end
