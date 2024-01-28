@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   def index
     return unless user_signed_in?
 
-    create_daily_habits_for_user(current_user)
+    DailyHabitService.new(current_user).create_daily_habits
     @habits = Habit.where(user: current_user)
-    @daily_habits = find_daily_habits_for_user
+    @daily_habits = current_user.daily_habits_for_today
   end
 end
