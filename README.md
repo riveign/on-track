@@ -11,12 +11,18 @@ To set up On Track locally, follow these steps:
 1. PostgreSQL database
 2. Update Database.yml file with your PostgreSQL username and password
 
+### Telegram Bot Setup
+
+1. Create a new Telegram bot using BotFather
+2. Update the Telegram bot token in the environment .env file
+
 ### Installation
 
 1. Bundle install
 2. Rails db:create
 3. Rails de:migrate
 4. Bin/dev
+5. Bin/rake telegram:bot:poller for Telegram bot
 
 ## Contributing
 Contributions to On Track are greatly appreciated. If you have ideas for improvement or encounter any issues, feel free to open an issue or submit a pull request.
