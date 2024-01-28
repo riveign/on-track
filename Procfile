@@ -1,1 +1,1 @@
-web: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000} && yarn build --watch $$ yarn watch:css
+web: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean;rake db:migrate
