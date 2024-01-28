@@ -3,7 +3,7 @@ class DailyHabitsController < ApplicationController
 
   def mark_done
     if @daily_habit.update(done: true)
-      @daily_habits = find_daily_habits_for_user
+      @daily_habits = current_user.daily_habits_for_today
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to root_path }

@@ -80,3 +80,7 @@ gem 'simple_form', '~> 5.3'
 gem 'rubocop', '~> 1.60'
 
 gem "kaminari", "~> 1.2"
+
+gem "solid_queue", "~> 0.2.0"
+
+gem "rufus-scheduler", "~> 3.9"
