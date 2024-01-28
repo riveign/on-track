@@ -78,4 +78,7 @@ Rails.application.configure do
 
   # Default URL Options
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Use memory store for bot sessions.
+  config.telegram_updates_controller.session_store = :memory_store
 end
