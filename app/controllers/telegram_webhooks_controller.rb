@@ -1,7 +1,11 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  def start!(_word = nil, *_other_words)
-    respond_with :message, text: 'Bienvenido'
+  def start!(*)
+    if User.find_by(telegram_id: from['id'])
+      respond_with :message, text: 'Bienvenido'
+    else
+      respond_with :message, text: 'No eres bienvenido'
+    end
   end
 
   def help!(*)
