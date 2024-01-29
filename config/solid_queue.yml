@@ -5,7 +5,7 @@ default: &default
   workers:
     - queues: "*"
       threads: 5
-      processes: 10
+      processes: 1
       polling_interval: 100
 
 development:
