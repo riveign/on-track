@@ -89,6 +89,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.telegram_updates_controller.session_store = :file_store,
+                                                     Rails.root.join('tmp', 'session_store')
+
+  # Set application domain, to be able to run `rake telegram:bot:set_webhook`
+  # routes.default_url_options = { host: 'host', protocol: 'https' }
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
