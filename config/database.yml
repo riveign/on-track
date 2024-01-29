@@ -82,5 +82,5 @@ production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
   database: on_track_production
-  username: on_track
+  username: <%= ENV["ON_TRACK_DATABASE_USER"] %>
   password: <%= ENV["ON_TRACK_DATABASE_PASSWORD"] %>
