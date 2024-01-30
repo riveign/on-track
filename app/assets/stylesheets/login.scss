@@ -1,0 +1,10 @@
+.custom-btn-size {
+  width: 100px;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* This makes sure that the container is at least as tall as the viewport */
+}

@@ -13,7 +13,9 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <%end%>
     <div class="container">
       <% flash.each do |msg_type, message| %>
         <div class="alert <%= bootstrap_class_for_flash(msg_type) %> alert-dismissible fade show" role="alert">
