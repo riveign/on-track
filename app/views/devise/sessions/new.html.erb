@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header">
+          <div class="card-header custom-card-header">
             <h2 class="mb-0">Welcome To On Track</h2>
           </div>
           <div class="card-body">
@@ -19,8 +19,8 @@
               </div>
 
               <div class="form-actions text-center">
-                <%= f.button :submit, "Log in", class: 'btn btn-success custom-btn-size' %>
-                <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary .custom-btn-size' %>
+                <%= f.button :submit, "Log in", class: 'btn custom-login-btn' %>
+                <%= link_to "Sign up", new_user_registration_path, class: 'btn custom-signup-btn' %>
               </div>
             <% end %>
           </div>
