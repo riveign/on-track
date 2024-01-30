@@ -1,0 +1,31 @@
+.custom-btn-size {
+  width: 100px;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* This makes sure that the container is at least as tall as the viewport */
+}
+
+.custom-login-btn {
+  background-color: $cool-blue;
+  color: #FFFFFF;
+  &:hover {
+    background-color: darken($cool-blue, 10%);
+  }
+}
+
+.custom-signup-btn {
+  background-color: $pastel-pink;
+  color: #FFFFFF;
+  &:hover {
+    background-color: darken($pastel-pink, 10%);
+  }
+}
+
+.custom-card-header {
+  background-color: $prussian-blue;
+  color: #FFFFFF;
+}
