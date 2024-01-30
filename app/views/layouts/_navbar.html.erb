@@ -17,7 +17,7 @@
             <a class="nav-link text-success" href="<%= edit_user_registration_path %>">Edit Profile</a>
           </li>
           <li class="nav-item">
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link text-success' %>
+            <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link text-success' %>
           </li>
         </ul>
       <% else %>
