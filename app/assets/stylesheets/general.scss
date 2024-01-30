@@ -1,3 +1,12 @@
 .background {
   background-color: $pale-grey;
 }
+
+.card-header {
+  background-color: $prussian-blue; // Prussian Blue
+  color: white;
+  h5 {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+}
