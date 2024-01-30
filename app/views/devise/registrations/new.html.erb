@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header">
+          <div class="card-header custom-card-header">
             <h2 class="mb-0">Create your account</h2>
           </div>
           <div class="card-body">
@@ -25,8 +25,8 @@
               </div>
 
               <div class="form-actions text-center">
-                <%= f.button :submit, "Sign up", class: 'btn btn-success custom-btn-size' %>
-                <%= link_to "Login", new_session_path(resource_name), class: 'btn btn-primary custom-btn-size ' %>
+                <%= f.button :submit, "Sign up", class: 'btn custom-btn-size custom-login-btn' %>
+                <%= link_to "Login", new_session_path(resource_name), class: 'btn custom-btn-size custom-signup-btn' %>
               </div>
             <% end %>
           </div>
