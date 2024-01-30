@@ -6,3 +6,12 @@
   border-radius: 150px;
   border: 2px solid;
 }
+
+.card-header {
+  background-color: $prussian-blue; // Prussian Blue
+  color: white;
+  h5 {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+}

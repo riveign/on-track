@@ -1,8 +1,6 @@
 <%= turbo_frame_tag "habit_list" do %>  
   <% if habits.empty? %>
-    <div class="card-body">
       <p class="card-text">You have no habits yet. Create one now!</p>
-    </div>
   <% else%>
     <ul id='habit_list' class="list-group list-group-flush">
       <%= render partial: "habits/habit", collection: habits %>
