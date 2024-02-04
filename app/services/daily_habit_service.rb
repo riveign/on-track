@@ -6,6 +6,8 @@ class DailyHabitService
   end
 
   def find_habits_without_daily_habit
+    return unless @user
+
     today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
 
     @user.habits.left_outer_joins(:daily_habits)
