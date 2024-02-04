@@ -10,6 +10,8 @@ To set up On Track locally, follow these steps:
 
 1. PostgreSQL database
 2. Update Database.yml file with your PostgreSQL username and password
+3. gem install bundler
+4. gem install rails
 
 ### Telegram Bot Setup
 
