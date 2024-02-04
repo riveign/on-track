@@ -54,6 +54,9 @@ gem 'htmlbeautifier'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot', '~> 6.4'
+  gem 'faker'
+  gem 'rspec-rails', '~> 6.1.0'
 end
 
 group :development do
@@ -79,10 +82,10 @@ gem 'simple_form', '~> 5.3'
 
 gem 'rubocop', '~> 1.60'
 
-gem "kaminari", "~> 1.2"
+gem 'kaminari', '~> 1.2'
 
-gem "solid_queue", "~> 0.2.0"
+gem 'solid_queue', '~> 0.2.0'
 
-gem "rufus-scheduler", "~> 3.9"
+gem 'rufus-scheduler', '~> 3.9'
 
-gem "telegram-bot", "~> 0.16.1"
+gem 'telegram-bot', '~> 0.16.1'
