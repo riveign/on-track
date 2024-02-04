@@ -9,6 +9,8 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Telegram.reset_bots
+  Telegram::Bot::ClientStub.stub_all!
 
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false
@@ -66,7 +68,4 @@ Rails.application.configure do
 
   # Use memory store for bot sessions.
   config.telegram_updates_controller.session_store = :memory_store
-
-  # Stub clients before processing routes.rb.
-  Telegram::Bot::ClientStub.stub_all
 end
