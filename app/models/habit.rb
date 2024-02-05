@@ -10,7 +10,21 @@ class Habit < ApplicationRecord
 
   scope :enabled, -> { where(disabled: false) }
 
+  # Method to calculate the streak
+  def streak
+    daily_habits.where(done: true).where('created_at >= ? AND created_at <= ?', streak_start_date,
+                                         Date.current.end_of_day).count
+  end
+
   private
+
+  def streak_start_date
+    last_incomplete_day = daily_habits.where(done: false)
+                                      .where('created_at < ?', Date.current.beginning_of_day)
+                                      .order(created_at: :desc)
+                                      .first
+    last_incomplete_day ? last_incomplete_day.created_at.to_date + 1.day : daily_habits.order(:created_at).first.created_at.to_date
+  end
 
   def create_daily_habits_for_user
     daily_habits.create!(user:, done: false)
