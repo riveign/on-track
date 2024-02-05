@@ -10,7 +10,7 @@ class DailyHabitService
 
     today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
 
-    @user.habits.left_outer_joins(:daily_habits)
+    @user.habits.enabled.left_outer_joins(:daily_habits)
          .where.not(id: DailyHabit.select(:habit_id).where(created_at: today_range))
   end
 
@@ -20,7 +20,9 @@ class DailyHabitService
     habits_without_daily_habit = find_habits_without_daily_habit
 
     habits_without_daily_habit.each do |habit|
-      habit.daily_habits.create!(user: @user, done: false) unless habit.disabled?
+      DailyHabit.create(habit:, user: @user, done: false)
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Validation error: #{e.message}"
     end
   end
 end
