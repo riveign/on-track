@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_28_135352) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_06_213511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_135352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "disabled"
+    t.string "active_days", default: [], array: true
     t.index ["habit_type_id"], name: "index_habits_on_habit_type_id"
     t.index ["user_id"], name: "index_habits_on_user_id"
   end

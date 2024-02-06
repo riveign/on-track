@@ -81,4 +81,6 @@ Rails.application.configure do
 
   # Use memory store for bot sessions.
   config.telegram_updates_controller.session_store = :memory_store
+
+  config.assets.compile = true
 end
