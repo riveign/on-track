@@ -3,5 +3,7 @@
     <%= daily_habit.habit.name %> - 
     <em><%= daily_habit.habit.habit_type.name %></em> 
   </span>
-  <%= button_to 'Mark as Done', mark_done_daily_habit_path(daily_habit),data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-success' %>
+  <%= button_to mark_done_daily_habit_path(daily_habit), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-success rounded-circle' do %>
+    <i class="fas fa-check"></i>
+  <% end %>
 </li>
