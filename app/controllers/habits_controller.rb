@@ -13,10 +13,21 @@ class HabitsController < ApplicationController
     if @habit.save!
       respond_to do |format|
         format.turbo_stream
-        format.html         { redirect_to root_path }
+        format.html { redirect_to root_path }
       end
     else
       render :new
+    end
+  end
+
+  def update
+    if @habit.update(habit_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html         { redirect_to root_path }
+      end
+    else
+      render :edit
     end
   end
 

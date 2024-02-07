@@ -1,0 +1,21 @@
+<%= turbo_frame_tag @habit do %>
+  <%= simple_form_for @habit, data: { turbo: true } do |form| %>
+    <div class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="row d-flex justify-content-between">
+        <div class="col">
+          <%= form.input :name, label: false, input_html: { class: 'form-control' } %>
+        </div>
+        <div class="col-auto">
+          <% Date::DAYNAMES.rotate(1).each_with_index do |day, day_index| %>
+            <% checkbox_id = "habit_#{day.downcase}_#{day_index}" %>
+            <%= form.check_box :active_days, { id: checkbox_id, multiple: true, class: 'd-none' }, day_index.to_s, nil %>
+            <label for="<%= checkbox_id %>" class="day-btn"><%= day[0] %></label>
+          <% end %>
+        </div>
+        <div class="col-auto align-self-start">
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

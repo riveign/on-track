@@ -18,9 +18,9 @@
 
 .day-btn {
   display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
   border-radius: 50%;
   cursor: pointer;
@@ -33,4 +33,10 @@
 .d-none:checked + .day-btn {
   background-color: $wisteria; 
   color: #fff;
+}
+
+.day-btn.active {
+  background-color: $wisteria; 
+  color: #fff;
+  cursor: default;
 }

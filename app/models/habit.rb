@@ -27,7 +27,7 @@ class Habit < ApplicationRecord
   end
 
   def create_daily_habits_for_user
-    daily_habits.create!(user:, done: false)
+    daily_habits.create!(user:, done: false) if active_days.include?(Date.current.wday)
   end
 
   def set_disabled_to_false
