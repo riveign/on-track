@@ -23,11 +23,11 @@ class Habit < ApplicationRecord
                                       .where('created_at < ?', Date.current.beginning_of_day)
                                       .order(created_at: :desc)
                                       .first
-    last_incomplete_day ? last_incomplete_day.created_at.to_date + 1.day : daily_habits.order(:created_at).first.created_at.to_date
+    last_incomplete_day ? last_incomplete_day.created_at.to_date + 1.day : created_at.to_date
   end
 
   def create_daily_habits_for_user
-    daily_habits.create!(user:, done: false)
+    daily_habits.create!(user:, done: false) if active_days.include?(Date.current.wday.to_s)
   end
 
   def set_disabled_to_false

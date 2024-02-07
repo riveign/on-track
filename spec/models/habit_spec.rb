@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe Habit, type: :model do
@@ -10,15 +11,20 @@ RSpec.describe Habit, type: :model do
     end
 
     describe 'after_create' do
-      it 'creates daily habits for the user' do
-        habit = create(:habit)
+      it 'creates daily habits for the user if today is active' do
+        habit = create(:habit, active_days: [Date.current.wday])
         expect(habit.daily_habits.count).to eq 1
         expect(habit.daily_habits.first.done).to be false
+      end
+
+      it 'does not creates daily habits for the user if today is not active' do
+        habit = create(:habit, active_days: [])
+        expect(habit.daily_habits.count).to eq 0
       end
     end
     describe '#streak' do
       let(:user) { create(:user) }
-      let(:habit) { create(:habit, user:) }
+      let(:habit) { create(:habit, user:, created_at: (5 + 2).days.ago) }
 
       context 'when it has been completed for 5 days' do
         before do

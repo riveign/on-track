@@ -5,8 +5,16 @@ class DailyHabit < ApplicationRecord
   validates :habit, presence: true
   validates :user, presence: true
   validate :habit_not_already_logged_today
+  validate :habit_is_active_today
 
   private
+
+  def habit_is_active_today
+    date = created_at ? created_at.to_date : Date.current
+    return if habit.active_days.include?(date.wday.to_s)
+
+    errors.add(:habit_id, 'is not active today')
+  end
 
   def habit_not_already_logged_today
     time_frame = created_at ? created_at.beginning_of_day..created_at.end_of_day : Time.zone.now.beginning_of_day..Time.zone.now.end_of_day

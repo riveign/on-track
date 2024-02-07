@@ -1,2 +1,2 @@
-<%= turbo_stream.replace "habit_list", partial: "habits/habit_list", locals: { habits: current_user.habits.page.per(10) } %>
+<%= turbo_stream.replace "habit_list", partial: "habits/habit_list", locals: { habits: current_user.habits.page.per(20) } %>
 <%= turbo_stream.replace "daily_habits_list", partial: "daily_habits/daily_habits_list", locals: { daily_habits: current_user.daily_habits_for_today } %>
