@@ -1,11 +1,7 @@
 <%= turbo_frame_tag habit do %>
   <li class="list-group-item d-flex justify-content-between align-items-center">
   <span>
-    <%= habit.name %>-
-    <strong><%= habit.streak %> day streak</strong>
-    <% if habit.streak > 5 %>
-      🔥
-    <% end %>
+    <%= habit.name %>
   </span>
   <span>
     <div class="active-days">
