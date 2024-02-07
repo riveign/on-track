@@ -9,7 +9,7 @@
   </span>
   <span>
     <div class="active-days">
-        <% Date::DAYNAMES.each_with_index do |day, index| %>
+        <% Date::DAYNAMES.rotate(1).each_with_index do |day, index| %>
           <% if habit.active_days.include?(index.to_s) %>
             <span class="day-btn active"><%= day[0] %></span>
           <% end %>
