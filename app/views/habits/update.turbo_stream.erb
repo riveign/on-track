@@ -1,1 +1,3 @@
-<%= turbo_stream.replace dom_id(@habit),  partial: 'habits/habit',  locals: { habit: @habit } %>
+<%= turbo_stream.replace @habit do %>
+  <%= render partial: "habit", locals: { habit: @habit } %>
+<% end %>

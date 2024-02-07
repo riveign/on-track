@@ -10,11 +10,7 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
   root 'home#index'
   resources :habit_types
-  resources :habits do
-    member do
-      patch :toggle_availability
-    end
-  end
+  resources :habits
   resources :daily_habits do
     member do
       patch :mark_done

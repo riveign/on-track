@@ -14,6 +14,12 @@
               <div class="col">
                 <%= f.association :habit_type, label: false, include_blank: false, input_html: { class: 'form-select' } %>
               </div>
+              <div class="col align-self-start">
+                <% Date::DAYNAMES.rotate(1).each_with_index do |day, index| %>
+                  <%= f.check_box :active_days, { id: "day_#{index}", multiple: true, class: 'd-none' }, (index+1), nil %>
+                  <label for="day_<%= index %>" class="day-btn"><%= day[0] %></label>
+                <% end %>
+              </div>
               <div class="col-auto align-self-start">
                 <%= f.button :submit, class: 'btn btn-success' %>
               </div>

@@ -1,4 +1,5 @@
-<li  id="<%= dom_id habit %>" class="list-group-item d-flex justify-content-between align-items-center">
+<%= turbo_frame_tag habit do %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
   <span>
     <%= habit.name %>-
     <strong><%= habit.streak %> day streak</strong>
@@ -6,8 +7,18 @@
       🔥
     <% end %>
   </span>
+  <span>
+    <div class="active-days">
+        <% Date::DAYNAMES.rotate(1).each_with_index do |day, index| %>
+          <% if habit.active_days.include?((index+1).to_s) %>
+            <span class="day-btn active"><%= day[0] %></span>
+          <% end %>
+        <% end %>
+      </div>
+  </span>
   <span class="d-flex justify-content-between">
-    <%= button_to habit.disabled ? "Enable" : "Disable", toggle_availability_habit_path(habit.id), method: :patch, class: "btn btn-outline-secondary" %>
+    <%= link_to 'Edit', edit_habit_path(habit), data: { turbo_frame: "habit_#{habit.id}" }, class: "btn btn-danger ms-2" %>
     <%= button_to "Delete", habit, method: :delete, data: { confirm: "Are you sure you want to delete this habit?" }, class: "btn btn-danger ms-2" %>
   </span>
-</li>
+  </li>
+<% end %>
