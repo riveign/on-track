@@ -8,7 +8,7 @@ RSpec.describe DailyHabitService do
     context 'when user is present' do
       it 'returns habits without daily habits for today' do
         habit1 = create(:habit, user:)
-        habit2 = create(:habit, user:, active_days: [])
+        habit2 = create(:habit, :inactive, user:)
         habit2.update(active_days: [Date.current.wday])
 
         habits_without_daily_habit = service.find_habits_without_daily_habit
@@ -33,7 +33,7 @@ RSpec.describe DailyHabitService do
     context 'when user is present' do
       it 'creates daily habits for habits without daily habits' do
         habit1 = create(:habit, user:)
-        habit2 = create(:habit, user:, active_days: [])
+        habit2 = create(:habit, :inactive, user:)
         habit2.update(active_days: [Date.current.wday])
 
         expect do
