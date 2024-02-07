@@ -10,7 +10,7 @@ class DailyHabitService
 
     today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
 
-    @user.habits.enabled.left_outer_joins(:daily_habits)
+    @user.habits.active.left_outer_joins(:daily_habits)
          .where.not(id: DailyHabit.select(:habit_id).where(created_at: today_range))
   end
 

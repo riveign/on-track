@@ -8,7 +8,7 @@
         <div class="col-auto">
           <% Date::DAYNAMES.rotate(1).each_with_index do |day, day_index| %>
             <% checkbox_id = "habit_#{day.downcase}_#{day_index}" %>
-            <%= form.check_box :active_days, { id: checkbox_id, multiple: true, class: 'd-none' }, day_index.to_s, nil %>
+            <%= form.check_box :active_days, { id: checkbox_id, multiple: true, class: 'd-none' }, (day_index+1).to_s, nil %>
             <label for="<%= checkbox_id %>" class="day-btn"><%= day[0] %></label>
           <% end %>
         </div>
