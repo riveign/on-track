@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_06_213511) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_215119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_213511) do
     t.string "active_days", default: [], array: true
     t.index ["habit_type_id"], name: "index_habits_on_habit_type_id"
     t.index ["user_id"], name: "index_habits_on_user_id"
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.boolean "done", default: false
+    t.index ["user_id"], name: "index_reminders_on_user_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -153,6 +164,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_213511) do
   add_foreign_key "daily_habits", "users"
   add_foreign_key "habits", "habit_types"
   add_foreign_key "habits", "users"
+  add_foreign_key "reminders", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

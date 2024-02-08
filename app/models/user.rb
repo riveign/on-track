@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :habits, dependent: :destroy
   has_many :daily_habits, dependent: :destroy
+  has_many :reminders, dependent: :destroy
 
   def daily_habits_for_today
     today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
