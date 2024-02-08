@@ -9,11 +9,11 @@
           <%= simple_form_for reminder, data: { turbo: true } do |f| %>
             <div class="row d-flex align-items-center">
                 <div class="form-inputs">
-                  <%= f.input :title, label: false, input_html: { class: 'your-custom-input-class' }, placeholder: 'Title' %>
-                  <%= f.input :due_date, as: :datetime, label: false, input_html: { class: 'your-custom-datetime-class' }, placeholder: 'Due Date' %>
+                  <%= f.input :title, label: false, placeholder: 'Title' %>
+                  <%= f.input :due_date, as: :datetime, label: false, placeholder: 'Due Date' %>
                 </div>
             <div class="form-actions">
-              <%= f.button :submit, 'Remind Me', class: 'btn btn-primary your-custom-submit-class' %>
+              <%= f.button :submit, 'Remind Me', class: 'btn-primary' %>
             </div>
           <% end %>
         </div>
