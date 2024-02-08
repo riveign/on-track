@@ -1,0 +1,1 @@
+<%= turbo_stream.replace "reminders_list", partial: "reminders/reminders_list", locals: { reminders: current_user.reminders.upcoming } %>

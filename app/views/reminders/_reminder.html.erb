@@ -1,0 +1,16 @@
+<%= turbo_frame_tag reminder do %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <div class="col">
+    <%= reminder.title %>
+  </div>
+  <div class="col">
+    <%= reminder.due_date.strftime("%d/%m/%y %H:%M") %>
+  </div>
+  <div class="col-auto d-flex justify-content-between">
+    <%= button_to mark_done_reminder_path(reminder), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-primary rounded-circle' do %>
+    <i class="fas fa-check"></i>
+  <% end %>
+    
+  </div>
+  </li>
+<% end %>
