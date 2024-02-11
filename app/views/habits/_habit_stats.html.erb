@@ -15,7 +15,7 @@
             <% end %>
           </div>
           <div class="col">
-            <%= habit.accomplishment_percentage  %> % de cumprimento
+            <%= number_with_precision(habit.accomplishment_percentage, precision: 2) %> % de cumprimento
           <div>
         </li>
       <% end %>
