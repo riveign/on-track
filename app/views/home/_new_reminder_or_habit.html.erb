@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "content_frame" do %>
+  <%= render partial: 'reminders/form', locals: { reminder: Reminder.new} %>
+  <%= render partial: 'habits/form', locals: { habit: Habit.new} %>
+<% end %>

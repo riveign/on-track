@@ -1,1 +1,9 @@
-<%= render partial: 'daily_actions', locals: { habits: @habits} %>
+<%= turbo_frame_tag "content_frame" do %>
+  <div class="card mb-4 shadow-sm"> 
+    <div class="card-header bg-success text-white">
+      <h5 class="mb-0">Habits</h5> 
+    </div>
+    <div class="card-body">
+      <%= render partial: 'habits/habit_list', locals: { habits: @habits} %>
+    </div>
+<% end %>
