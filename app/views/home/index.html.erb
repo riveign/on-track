@@ -1,52 +1,16 @@
 <div class="container mt-4">
-  <div class="row">
-    <!-- This column will appear first on mobile and second on larger screens -->
-    <div class="col-12 col-md-6 order-1 order-md-1">
-      <div class="mt-4">
-        <div class="card mb-4 shadow-sm"> 
-          <div class="card-header bg-success text-white">
-            <h5 class="mb-0">Reminders</h5> 
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <%= render partial: 'reminders/reminders_list', locals: { reminders: @reminders } %>
-            </ul>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6"> <!-- Adjust the column sizes as needed -->
+      <div class="d-flex justify-content-center mb-4">
+        <div class="btn-group" role="group" aria-label="View options">
+          <%= link_to "Today", todays_reminders_and_habits_path, class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "Stats", list_all_habits_path, class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "New", "#", class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
         </div>
       </div>
-      <div>
-        <div class="card mb-4 shadow-sm"> 
-          <div class="card-header bg-success text-white">
-            <h5 class="mb-0">Today's Habits</h5> 
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <%= render partial: 'daily_habits/daily_habits_list', locals: { daily_habits: @daily_habits } %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- This column will appear second on mobile and first on larger screens -->
-    <div class="col-12 col-md-6 order-2 order-md-2">
-      <div id="new-habit">
-        <%= render 'habits/form', habit: Habit.new %>
-      </div>
-      <div id="new-reminder">
-        <%= render 'reminders/form', reminder: Reminder.new %>
-      </div>
-      <div class="mt-4">
-        <div class="card mb-4 shadow-sm"> 
-          <div class="card-header bg-dark text-white">
-            <h5 class="mb-0">All habits</h5> 
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <%= render 'habits/habit_list', habits: @habits %>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <%= turbo_frame_tag "content_frame" do %>
+        <%= render partial: 'daily_actions', locals: { reminders: @reminders, daily_habits: @daily_habits } %>
+      <% end %>
     </div>
   </div>
 </div>
