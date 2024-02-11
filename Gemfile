@@ -89,3 +89,5 @@ gem 'solid_queue', '~> 0.2.0'
 gem 'rufus-scheduler', '~> 3.9'
 
 gem 'telegram-bot', '~> 0.16.1'
+
+gem "serviceworker-rails", "~> 0.6.0"

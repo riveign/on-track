@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'todays_reminders_and_habits', to: 'home#todays_reminders_and_habits'
   get 'list_all_habits', to: 'home#list_all_habits'
   get 'new_reminder_or_habit', to: 'home#new_reminder_or_habit'
+  get '/service_worker.js' => 'service_worker#service_worker'
+  get '/manifest.json' => 'service_worker#manifest'
   resources :habit_types
   resources :habits
   resources :reminders do
