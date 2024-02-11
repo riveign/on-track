@@ -8,7 +8,9 @@ class Habit < ApplicationRecord
   before_create :set_disabled_to_false
   after_create :create_daily_habits_for_user
 
-  scope :active, -> { where('active_days @> ARRAY[?]::varchar[]', [Date.current.wday.to_s]) }
+  scope :active, lambda {
+    where('active_days @> ARRAY[?]::varchar[]', [(Date.current.wday.zero? ? 7 : Date.current.wday).to_s])
+  }
 
   # Method to calculate the streak
   def streak
@@ -27,7 +29,10 @@ class Habit < ApplicationRecord
   end
 
   def create_daily_habits_for_user
-    daily_habits.create!(user:, done: false) if active_days.include?(Date.current.wday.to_s)
+    return unless active_days.include?((Date.current.wday.zero? ? 7 : Date.current.wday).to_s)
+
+    daily_habits.create!(user:,
+                         done: false)
   end
 
   def set_disabled_to_false

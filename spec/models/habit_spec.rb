@@ -12,7 +12,13 @@ RSpec.describe Habit, type: :model do
 
     describe 'after_create' do
       it 'creates daily habits for the user if today is active' do
-        habit = create(:habit, active_days: [Date.current.wday])
+        habit = create(:habit, active_days: [(Date.current.wday.zero? ? 7 : Date.current.wday).to_s])
+        expect(habit.daily_habits.count).to eq 1
+        expect(habit.daily_habits.first.done).to be false
+      end
+
+      it 'creates daily habits for the user if today is active' do
+        habit = create(:habit)
         expect(habit.daily_habits.count).to eq 1
         expect(habit.daily_habits.first.done).to be false
       end
