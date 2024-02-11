@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
   root 'home#index'
+  get 'todays_reminders_and_habits', to: 'home#todays_reminders_and_habits'
+  get 'list_all_habits', to: 'home#list_all_habits'
+  get 'new_reminder_or_habit', to: 'home#new_reminder_or_habit'
   resources :habit_types
   resources :habits
   resources :reminders do
