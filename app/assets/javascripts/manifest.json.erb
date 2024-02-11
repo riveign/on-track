@@ -1,19 +1,17 @@
-<% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
 {
-  "name": "On Track",
-  "short_name": "ONTRK",
-  "start_url": "/",
+  "short_name": "On Track",
+  "name": "ONTRK",
+  "id": "/",
   "icons": [
-  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
     {
-      "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
-      "sizes": "<%= dim %>",
+      "src": "<%= image_path "serviceworker-rails/heart-144.png" %>",
+      "sizes": "144x144",
       "type": "image/png"
-    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
-  <% end %>
+    }
   ],
-  "theme_color": "#000000",
-  "background_color": "#FFFFFF",
-  "display": "fullscreen",
-  "orientation": "portrait"
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000"
 }
