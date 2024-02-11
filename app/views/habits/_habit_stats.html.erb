@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "habit_stats" do %>  
+  <% if habits.empty? %>
+      <p class="card-text">You have no habits yet. Create one now!</p>
+  <% else%>
+    <ul id='habit_list' class="list-group list-group-flush">
+      <% habits.each do |habit| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="col">
+            <%= habit.name %>
+          </div>
+          <div class="col-5">
+            <strong><%= habit.streak %> dias de racha!</strong>
+            <% if habit.streak > 5 %>
+              🔥
+            <% end %>
+          </div>
+          <div class="col">
+            <%= habit.accomplishment_percentage  %> % de cumprimento
+          <div>
+        </li>
+      <% end %>
+    </ul>
+  <%end%>
+<% end %>

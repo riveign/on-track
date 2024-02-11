@@ -54,4 +54,29 @@ RSpec.describe Habit, type: :model do
       end
     end
   end
+  describe '#accomplishment_percentage' do
+    let(:user) { create(:user) }
+    let(:inactive_habit) { create(:habit, user:) }
+    let(:habit) { create(:habit, user:) }
+
+    context 'when there are no recent daily habits' do
+      it 'returns 0' do
+        expect(inactive_habit.accomplishment_percentage).to eq 0
+      end
+    end
+
+    context 'when there are recent daily habits' do
+      let!(:recent_habit_1) { create(:daily_habit, habit:, done: true, user:, created_at: 2.days.ago) }
+      let!(:old_habit) { create(:daily_habit, habit:, done: false, user:, created_at: 31.days.ago) }
+      let!(:old_habit2) { create(:daily_habit, habit:, done: false, user:, created_at: 32.days.ago) }
+
+      it 'calculates the accomplishment percentage' do
+        expect(habit.accomplishment_percentage).to eq 50.0
+      end
+
+      it 'calculates the accomplishment percentage for a specific number of days' do
+        expect(habit.accomplishment_percentage(33)).to eq 25.0
+      end
+    end
+  end
 end
