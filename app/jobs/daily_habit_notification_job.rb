@@ -1,4 +1,4 @@
-class DailyHabitReminderJob < ApplicationJob
+class DailyHabitNotificationJob < ApplicationJob
   queue_as :default
 
   def perform

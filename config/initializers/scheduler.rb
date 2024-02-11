@@ -7,5 +7,9 @@ scheduler.cron '0 3 * * *' do
 end
 
 scheduler.cron '0 12,18 * * *' do
-  DailyHabitReminderJob.perform_later
+  DailyHabitNotificationJob.perform_later
+end
+
+scheduler.cron '0 15,20 * * *' do
+  ReminderNotificationJob.perform_later
 end
