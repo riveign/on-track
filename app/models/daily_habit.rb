@@ -7,6 +7,8 @@ class DailyHabit < ApplicationRecord
   validate :habit_not_already_logged_today
   validate :habit_is_active_today
 
+  scope :not_done, -> { where(done: false) }
+
   private
 
   def habit_is_active_today
