@@ -18,6 +18,15 @@ class Habit < ApplicationRecord
                                          Date.current.end_of_day).count
   end
 
+  def accomplishment_percentage(accomplishment_days = 30)
+    start_date = accomplishment_days.days.ago.beginning_of_day
+    end_date = Date.current.end_of_day
+    recent_daily_habits = daily_habits.where(created_at: start_date..end_date)
+    return 0 if recent_daily_habits.empty?
+
+    (recent_daily_habits.where(done: true).count.to_f / recent_daily_habits.count) * 100
+  end
+
   private
 
   def streak_start_date
