@@ -11,7 +11,7 @@ class DailyHabit < ApplicationRecord
 
   def habit_is_active_today
     date = created_at ? created_at.to_date : Date.current
-    return if habit.active_days.include?(date.wday.to_s)
+    return if habit.active_days.include?((date.wday.zero? ? 7 : date.wday).to_s)
 
     errors.add(:habit_id, 'is not active today')
   end
