@@ -4,6 +4,6 @@ class ServiceWorkerController < ApplicationController
   end
 
   def manifest
-    render file: 'app/assets/javascripts/manifest.json'
+    render file: 'app/assets/javascripts/manifest.json', content_type: 'application/json'
   end
 end
