@@ -1,7 +1,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_user!
-    before_action :check_admin_role
+    # before_action :check_admin_role
 
     private
 
