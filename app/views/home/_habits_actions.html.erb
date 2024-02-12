@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "content_frame" do %>
   <div class="card mb-4 shadow-sm"> 
     <div class="card-header bg-success text-white">
-      <h5 class="mb-0">Stats</h5> 
+      <h5 class="mb-0">Estadisticas</h5> 
     </div>
     <div class="card-body">
       <%= render partial: 'habits/habit_stats', locals: { habits: @habits} %>
@@ -9,7 +9,7 @@
   </div>
   <div class="card mb-4 shadow-sm"> 
     <div class="card-header bg-success text-white">
-      <h5 class="mb-0">Habits</h5> 
+      <h5 class="mb-0">Habitos</h5> 
     </div>
     <div class="card-body">
       <%= render partial: 'habits/habit_list', locals: { habits: @habits} %>

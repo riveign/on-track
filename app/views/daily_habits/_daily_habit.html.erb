@@ -2,11 +2,11 @@
   <div class='col-3'>
     <%= daily_habit.habit.name %>
   </div>
-  <div class='col-auto'>
+  <div class='col-3'>
     <em><%= daily_habit.habit.habit_type.name %></em>
   </div>
   <div class='col-3'>
-    <strong><%= daily_habit.habit.streak %> day streak</strong>
+    <strong><%= daily_habit.habit.streak %> dias de racha!</strong>
     <% if daily_habit.habit.streak > 5 %>
       🔥
     <% end %>

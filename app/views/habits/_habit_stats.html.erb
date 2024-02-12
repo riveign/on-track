@@ -5,17 +5,17 @@
     <ul id='habit_list' class="list-group list-group-flush">
       <% habits.each do |habit| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="col">
+          <div class="col-4">
             <%= habit.name %>
           </div>
-          <div class="col-5">
+          <div class="col-4">
             <strong><%= habit.streak %> dias de racha!</strong>
             <% if habit.streak > 5 %>
               🔥
             <% end %>
           </div>
-          <div class="col">
-            <%= number_with_precision(habit.accomplishment_percentage, precision: 2) %> % de cumprimento
+          <div class="col-4">
+            <%= number_with_precision(habit.accomplishment_percentage, precision: 0) %>% de cumprimento
           <div>
         </li>
       <% end %>

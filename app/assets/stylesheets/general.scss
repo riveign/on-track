@@ -35,3 +35,10 @@
   color: #fff;
   cursor: default;
 }
+
+.tab-button{
+  width: 9.375rem; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

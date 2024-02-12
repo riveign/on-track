@@ -3,16 +3,16 @@
     <div class="col-md-12">
       <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
-          <h5 class="mb-0">Remidner</h3>
+          <h5 class="mb-0">Nuevo Recordatorio</h3>
         </div>
         <div class="card-body">
           <%= simple_form_for reminder, data: { turbo: true } do |f| %>
             <div class="row d-flex align-items-center">
                 <div class="form-inputs">
-                  <%= f.input :title, label: false, placeholder: 'Title' %>
-                  <%= f.input :due_date, as: :datetime, label: false, placeholder: 'Due Date' %>
+                  <%= f.input :title, label: false, placeholder: 'Titulo' %>
+                  <%= f.input :due_date, as: :datetime, label: false, placeholder: 'Fecha' %>
                 </div>
-            <div class="form-actions">
+            <div class="orm-group d-flex justify-content-end">
               <%= f.button :submit, 'Remind Me', class: 'btn-primary' %>
             </div>
           <% end %>

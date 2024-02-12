@@ -3,9 +3,9 @@
     <div class="col-12 col-md-8 col-lg-6"> <!-- Adjust the column sizes as needed -->
       <div class="d-flex justify-content-center mb-4">
         <div class="btn-group" role="group" aria-label="View options">
-          <%= link_to "Today", root_path, class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
-          <%= link_to "Stats", list_all_habits_path, class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
-          <%= link_to "Create", new_reminder_or_habit_path, class: "btn btn-success", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "Hoy", root_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "Stats", list_all_habits_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "Nuevos", new_reminder_or_habit_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
         </div>
       </div>
       <%= turbo_frame_tag "content_frame" do %>

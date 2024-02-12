@@ -1,28 +1,29 @@
 <div class="mt-4">
-  <div class="row ">
+  <div class="row">
     <div class="col-md-12">
       <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
-          <h5 class="mb-0">New Habit</h3>
+          <h5 class="mb-0">Nuevo Habito</h5>
         </div>
         <div class="card-body">
           <%= simple_form_for habit, data: { turbo: true } do |f| %>
-            <div class="row d-flex align-items-center">
-              <div class="col">
-                <%= f.input :name, label: false, input_html: { class: 'form-control', placeholder: 'Habit Name' } %>
-              </div>
-              <div class="col">
-                <%= f.association :habit_type, label: false, include_blank: false, input_html: { class: 'form-select' } %>
-              </div>
-              <div class="col align-self-start">
-                <% Date::DAYNAMES.rotate(1).each_with_index do |day, index| %>
+            <!-- Use Bootstrap's mb-* classes to add bottom margin for spacing -->
+            <div class="form-group mb-3"> <!-- Add spacing between form groups -->
+              <%= f.input :name, label: false, input_html: { class: 'form-control', placeholder: 'Nombre' } %>
+            </div>
+            <div class="form-group mb-3"> <!-- Add spacing between form groups -->
+              <%= f.association :habit_type, label: false, include_blank: false, input_html: { class: 'form-select' } %>
+            </div>
+            <div class="form-group mb-3"> <!-- Adjust spacing for the day checkboxes -->
+              <% Date::DAYNAMES.rotate(1).each_with_index do |day, index| %>
+                <div class="form-check form-check-inline"> <!-- Use inline checks for days, ensuring they are spaced nicely -->
                   <%= f.check_box :active_days, { id: "day_#{index}", multiple: true, class: 'd-none' }, (index+1), nil %>
                   <label for="day_<%= index %>" class="day-btn"><%= day[0] %></label>
-                <% end %>
-              </div>
-              <div class="col-auto align-self-start">
-                <%= f.button :submit, class: 'btn btn-success' %>
-              </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="form-group d-flex justify-content-end">
+              <%= f.button :submit, class: 'btn btn-primary' %>
             </div>
           <% end %>
         </div>
