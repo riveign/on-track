@@ -91,3 +91,5 @@ gem 'rufus-scheduler', '~> 3.9'
 gem 'telegram-bot', '~> 0.16.1'
 
 gem "serviceworker-rails", "~> 0.6.0"
+
+gem "administrate", "~> 0.20.1"

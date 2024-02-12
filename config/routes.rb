@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :daily_habits
+    resources :habits
+    resources :habit_types
+    resources :reminders
+    resources :users
+
+    root to: 'users#index'
+  end
   devise_for :users
   telegram_webhook TelegramWebhooksController
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
