@@ -19,6 +19,6 @@ class DailyHabitCreationJob < ApplicationJob
     return 'Hoy se puede descansar!' if habits.empty?
 
     'Un nuevo dia, Una nueva oportunidad de estar On Track! Estas son las cosas para hacer: '\
-    "\n #{habits.map(&:name).join("\n")}"
+    "\n -  #{habits.map(&:name).join("\n")}"
   end
 end
