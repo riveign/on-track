@@ -11,5 +11,5 @@ scheduler.cron '0 12,18 * * *' do
 end
 
 scheduler.cron '0 15,20 * * *' do
-  ReminderNotificationJob.perform_later
+  UpcomingReminderNotificationJob.perform_later
 end
