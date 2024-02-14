@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe Reminder, type: :model do
@@ -30,6 +31,16 @@ RSpec.describe Reminder, type: :model do
     it 'should return the correct message when days_until_due is less than 1' do
       reminder = Reminder.new(title: 'Some Reminder', due_date: Date.today)
       expect(reminder.telegram_notification).to eq('No te olvides de Some Reminder para hoy!')
+    end
+  end
+
+  describe 'scopes' do
+    let(:user) { create(:user) }
+
+    it 'should return upcoming reminders' do
+      reminder1 = Reminder.create(title: 'Reminder 1', due_date: Date.today + 1, user:)
+      reminder2 = Reminder.create(title: 'Reminder 2', due_date: Date.today + 2, user:)
+      expect(user.reminders.upcoming).to contain_exactly(reminder1, reminder2)
     end
   end
 end

@@ -4,9 +4,13 @@ class Reminder < ApplicationRecord
   validates :title, presence: true
   validates :due_date, presence: true
   validates :user, presence: true
+  validates :done, inclusion: { in: [true, false] }
   validate :due_date_cannot_be_in_the_past
 
   scope :upcoming, -> { where('due_date >= ?', Time.zone.now).where(done: false) }
+  scope :for_today, lambda {
+                      where(due_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where(done: false)
+                    }
 
   after_create :schedule_notification
 

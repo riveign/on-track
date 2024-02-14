@@ -4,5 +4,6 @@ FactoryBot.define do
     description { 'This is a reminder' }
     due_date { Time.now + 1.day }
     user
+    done { false }
   end
 end
