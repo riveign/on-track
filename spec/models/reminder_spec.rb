@@ -42,5 +42,11 @@ RSpec.describe Reminder, type: :model do
       reminder2 = Reminder.create(title: 'Reminder 2', due_date: Date.today + 2, user:)
       expect(user.reminders.upcoming).to contain_exactly(reminder1, reminder2)
     end
+
+    it 'should return the reminders for today' do
+      reminder1 = Reminder.create!(title: 'Reminder 1', due_date: Time.zone.now + 1.minute, user:) # 1 minute from now this test will fail at midnight
+      reminder2 = Reminder.create!(title: 'Reminder 2', due_date: Time.zone.now + 1.minute, user:) # 1 minute from now this test will fail at midnight
+      expect(user.reminders.due_today).to contain_exactly(reminder1, reminder2)
+    end
   end
 end

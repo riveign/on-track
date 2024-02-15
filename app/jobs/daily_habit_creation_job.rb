@@ -18,7 +18,7 @@ class DailyHabitCreationJob < ApplicationJob
     Telegram.bot.send_message(chat_id: user.telegram_id,
                               text: habits_texts(user.habits.active))
     Telegram.bot.send_message(chat_id: user.telegram_id,
-                              text: reminders_texts(user.reminders.for_today))
+                              text: reminders_texts(user.reminders.due_today))
   end
 
   def habits_texts(habits)
