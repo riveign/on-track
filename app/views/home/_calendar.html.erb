@@ -1,0 +1,6 @@
+<%= form_tag(calendar_path, method: :get, id: "date-select-form") do %>
+  <%= date_field_tag :date, @selected_date %>
+  <%= submit_tag "Change Date" %>
+<% end %>
+
+<%= render partial: 'daily_actions', locals: { reminders: @reminders, daily_habits: @daily_habits } %>

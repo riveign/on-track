@@ -4,6 +4,7 @@
       <div class="d-flex justify-content-center mb-4">
         <div class="btn-group" role="group" aria-label="View options">
           <%= link_to "Hoy", root_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
+          <%= link_to "Calendar", calendar_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
           <%= link_to "Stats", list_all_habits_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
           <%= link_to "Nuevos", new_reminder_or_habit_path, class: "btn btn-success tab-button", data: { turbo_frame: "content_frame" } %>
         </div>
