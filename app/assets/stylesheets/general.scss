@@ -37,8 +37,13 @@
 }
 
 .tab-button{
-  width: 9.375rem; 
+  width: 8.375rem; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+input[type="date"].form-control {
+  background-color: $white;
+  border-color: $primary;
 }
