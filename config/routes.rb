@@ -26,6 +26,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get '/manifest.json' => 'service_worker#manifest'
   resources :habit_types
   resources :habits
+  resources :users, only: %i[edit update]
   resources :reminders do
     member do
       patch :mark_done
