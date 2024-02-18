@@ -7,7 +7,9 @@ class Reminder < ApplicationRecord
   validates :done, inclusion: { in: [true, false] }
   validate :due_date_cannot_be_in_the_past
 
-  scope :upcoming, -> { where('due_date >= ?', Time.zone.now).where(done: false) }
+  scope :upcoming, lambda { |days = 15|
+                     where('due_date >= ?', Time.zone.now).where('due_date <= ?', Time.zone.now + days.days).where(done: false)
+                   }
   scope :due_today, lambda {
                       where(due_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where(done: false)
                     }
