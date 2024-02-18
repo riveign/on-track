@@ -42,7 +42,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
     else
       DailyHabit.find(data).update!(done: true)
-      answer_callback_query 'Listo!', show_alert: true
+      respond_with :message, text: 'listo!'
     end
   end
 end
