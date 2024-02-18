@@ -36,4 +36,13 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: 'Utiliza /register <email> para vincular tu cuenta'
     respond_with :message, text: 'Utiliza /stop para descatviar los recordatorios'
   end
+
+  def callback_query(data)
+    if data == 'no'
+      answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
+    else
+      DailyHabit.find(data).update!(done: true)
+      answer_callback_query 'Listo!', show_alert: true
+    end
+  end
 end
