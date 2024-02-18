@@ -10,7 +10,7 @@
             <div class="row d-flex align-items-center">
                 <div class="form-inputs">
                   <%= f.input :title, label: false, placeholder: 'Titulo' %>
-                  <%= f.input :due_date, as: :datetime, label: false, placeholder: 'Fecha' %>
+                  <%= f.input :due_date, as: :datetime, placeholder: 'Fecha' , label: false, input_html: {class: 'custom-class', data: {behavior: 'datetime-picker'}} %>
                 </div>
             <div class="orm-group d-flex justify-content-end">
               <%= f.button :submit, 'Remind Me', class: 'btn-primary' %>

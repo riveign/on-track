@@ -15,7 +15,8 @@
             <% end %>
           </div>
           <div class="col-4">
-            <%= number_with_precision(habit.accomplishment_percentage, precision: 0) %>% de cumprimento
+            <%= on_track?(habit.accomplishment_percentage, current_user) =%>
+            (<%= number_with_precision(habit.accomplishment_percentage, precision: 0) %>%)
           <div>
         </li>
       <% end %>
