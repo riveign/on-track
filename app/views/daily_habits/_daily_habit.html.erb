@@ -5,13 +5,25 @@
   <div class='col-3'>
     <em><%= daily_habit.habit.habit_type.name %></em>
   </div>
-  <div class='col-3'>
-    <strong><%= daily_habit.habit.streak %> dias de racha!</strong>
-    <% if daily_habit.habit.streak > 5 %>
-      🔥
+  <% if daily_habit.created_at.to_date == Date.today %>
+    <div class='col-3'>
+      <strong><%= daily_habit.habit.streak %> dias de racha!</strong>
+      <% if daily_habit.habit.streak > 5 %>
+        🔥
+      <% end %>
+    </div>
+    <%= button_to mark_done_daily_habit_path(daily_habit), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-success rounded-circle' do %>
+      <i class="fas fa-check"></i>
     <% end %>
-  </div>
-  <%= button_to mark_done_daily_habit_path(daily_habit), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-success rounded-circle' do %>
-    <i class="fas fa-check"></i>
+  <% else %>
+    <div class='col-3'>
+      <strong><%= daily_habit.created_at.to_date %></strong>
+    </div>
+    <% if daily_habit.done %>
+      <i class="fas fa-check"></i>
+    <% else %>
+      <i class="fas fa-times"></i>
+    <% end %>
+
   <% end %>
 </li>

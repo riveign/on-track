@@ -5,10 +5,19 @@
   <div class="col">
     <%= reminder.due_date.strftime("%d/%m/%y %H:%M") %>
   </div>
-  <div class="col-auto d-flex justify-content-between">
-    <%= button_to mark_done_reminder_path(reminder), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-primary rounded-circle' do %>
-    <i class="fas fa-check"></i>
+  <% if reminder.due_date.past? %>
+    <div class="col-auto d-flex justify-content-between">
+      <% if reminder.done %>
+        <i class="fas fa-check"></i>
+      <% else %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="col-auto d-flex justify-content-between">
+      <%= button_to mark_done_reminder_path(reminder), data: { turbo_frame: "daily_habits_list" }, method: :patch, class: 'btn btn-outline-primary rounded-circle' do %>
+        <i class="fas fa-check"></i>
+      <% end %>
+    </div>
   <% end %>
-    
-  </div>
-  </li>
+</li>

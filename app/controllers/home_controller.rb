@@ -28,8 +28,9 @@ class HomeController < ApplicationController
   end
 
   def calendar
-    @selected_date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @daily_habits = current_user.daily_habits.where(created_at: @selected_date.all_day)
+    @selected_date = (params[:date].present? ? Date.parse(params[:date]) : Date.today).all_day
+    puts @selected_date
+    @daily_habits = current_user.daily_habits.where(created_at: @selected_date)
     @reminders = current_user.reminders.where(due_date: @selected_date)
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'calendar')
   end

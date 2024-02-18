@@ -1,21 +1,20 @@
-
- <div class="card mb-4 shadow-sm"> 
-    <div class="card-header bg-success text-white">
-      <h5 class="mb-0">Recordatorios</h5> 
-    </div>
-    <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <%= render partial: 'reminders/reminders_list', locals: { reminders: reminders } %>
-      </ul>
-    </div>
+<div class="card mb-4 shadow-sm"> 
+  <div class="card-header bg-success text-white">
+    <h5 class="mb-0">Recordatorios</h5> 
   </div>
-  <div class="card mb-4 shadow-sm"> 
-    <div class="card-header bg-success text-white">
-      <h5 class="mb-0">Habitos para hoy</h5> 
-    </div>
-    <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <%= render partial: 'daily_habits/daily_habits_list', locals: { daily_habits: daily_habits } %>
-      </ul>
-    </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <%= render partial: 'reminders/reminders_list', locals: { reminders: reminders } %>
+    </ul>
   </div>
+</div>
+<div class="card mb-4 shadow-sm"> 
+  <div class="card-header bg-success text-white">
+    <h5 class="mb-0">Habitos para hoy</h5> 
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <%= render partial: 'daily_habits/daily_habits_list', locals: { daily_habits: daily_habits } %>
+    </ul>
+  </div>
+</div>
