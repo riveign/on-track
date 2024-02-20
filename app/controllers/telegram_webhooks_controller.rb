@@ -40,18 +40,17 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def update_dh_callback_query(value = nil, *)
     if value == 'no'
       answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
-    else
-      DailyHabit.find(value).update!(done: true)
-      respond_with :message, text: 'Felicitaiones, una cosa mas lista hoy!'
+    elsif DailyHabit.find(value).update!(done: true)
+      edit_message('text',
+                   { text: 'Felicitaiones, una cosa mas lista hoy!' })
     end
   end
 
   def update_r_callback_query(value = nil, *)
     if value == 'no'
       answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
-    else
-      Reminder.find(value).update!(done: true)
-      respond_with :message, text: 'Felicitaiones, una cosa mas lista hoy!'
+    elsif Reminder.find(value).update!(done: true)
+      edit_message('text', { text: 'Felicitaiones, una cosa mas lista hoy!' })
     end
   end
 end
