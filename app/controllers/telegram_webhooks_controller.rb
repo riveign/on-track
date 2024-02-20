@@ -1,5 +1,5 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
-  include Telegram::Bot::UpdatesController::MessageContext
+  include Telegram::Bot::UpdatesController::CallbackQueryContext
   def start!(*_words)
     if (user = User.find_by(telegram_id: from['id']))
       respond_with :message, text: "Bienvenido, #{user.email}"
@@ -37,12 +37,21 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: 'Utiliza /stop para descatviar los recordatorios'
   end
 
-  def callback_query(data)
-    if data == 'no'
+  def update_dh_callback_query(value = nil, *)
+    if value == 'no'
       answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
     else
-      DailyHabit.find(data).update!(done: true)
-      respond_with :message, text: 'listo!'
+      DailyHabit.find(value).update!(done: true)
+      respond_with :message, text: 'Felicitaiones, una cosa mas lista hoy!'
+    end
+  end
+
+  def update_r_callback_query(value = nil, *)
+    if value == 'no'
+      answer_callback_query 'Todavia Hay Tiempo!', show_alert: true
+    else
+      Reminder.find(value).update!(done: true)
+      respond_with :message, text: 'Felicitaiones, una cosa mas lista hoy!'
     end
   end
 end

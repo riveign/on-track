@@ -8,15 +8,19 @@ class DailyHabitConfirmationJob < ApplicationJob
       user.daily_habits_for_today.sample(1).each do |daily_habit|
         Telegram.bot.send_message(chat_id: user.telegram_id,
                                   text: "Hoy hiciste #{daily_habit.habit.name}?",
-                                  reply_markup: {
-                                    inline_keyboard: [
-                                      [
-                                        { text: 'Si', callback_data: daily_habit.id.to_s },
-                                        { text: 'No', callback_data: 'no' }
-                                      ]
-                                    ]
-                                  })
+                                  reply_markup: reply_markup(daily_habit))
       end
     end
+  end
+
+  def reply_markup(daily_habit)
+    {
+      inline_keyboard: [
+        [
+          { text: 'Si', callback_data: "update_dh:#{daily_habit.id}" },
+          { text: 'No', callback_data: 'update_dh:no' }
+        ]
+      ]
+    }
   end
 end
