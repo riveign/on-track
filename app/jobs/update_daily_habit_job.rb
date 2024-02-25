@@ -3,6 +3,6 @@ class UpdateDailyHabitJob < ApplicationJob
 
   def perform(daily_habit:, user:)
     Telegram.bot.send_message(chat_id: user.telegram_id,
-                              text: "Congratulations! #{daily_habit.habit.name} is offically done")
+                              text: "Eso! #{daily_habit.habit.name} \xE2\x9C\x85")
   end
 end
