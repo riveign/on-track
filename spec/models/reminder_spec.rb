@@ -25,12 +25,12 @@ RSpec.describe Reminder, type: :model do
   describe '#telegram_notification' do
     it 'should return the correct message when days_until_due is greater than or equal to 1' do
       reminder = Reminder.new(title: 'Some Reminder', due_date: Date.today + 3)
-      expect(reminder.telegram_notification).to eq('No te olvides de Some Reminder para dentro de 3 dias!')
+      expect(reminder.telegram_notification).to eq("No te olvides de Some Reminder para dentro de 3 dias! \xE2\x8F\xB0	\xE2\x8F\xB0	\xE2\x8F\xB0")
     end
 
     it 'should return the correct message when days_until_due is less than 1' do
       reminder = Reminder.new(title: 'Some Reminder', due_date: Date.today)
-      expect(reminder.telegram_notification).to eq('No te olvides de Some Reminder para hoy!')
+      expect(reminder.telegram_notification).to eq("No te olvides de Some Reminder para hoy! \xE2\x9A\xA0 \xE2\x9A\xA0 \xE2\x9A\xA0")
     end
   end
 

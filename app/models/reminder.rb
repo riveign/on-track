@@ -22,7 +22,7 @@ class Reminder < ApplicationRecord
 
   def telegram_notification
     if days_until_due >= 1
-      "No te olvides de #{title} para dentro de #{days_until_due} dias! \xE2\x8F\xB0	\xE2\x8F\xB0	\xE2\x8F\xB0	"
+      "No te olvides de #{title} para dentro de #{days_until_due} dias! \xE2\x8F\xB0	\xE2\x8F\xB0	\xE2\x8F\xB0"
     else
       "No te olvides de #{title} para hoy! \xE2\x9A\xA0 \xE2\x9A\xA0 \xE2\x9A\xA0"
     end
