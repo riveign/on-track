@@ -3,7 +3,7 @@ class ReminderConfirmationJob < ApplicationJob
 
   def perform
     User.all.each do |user|
-      next unless user.telegram_id && user.reminders.due_today.any?
+      next unless user.telegram_id && user.reminders.due_today.any? && user.active_hours?
 
       user.reminders.due_today.sample(1).each do |reminder|
         Telegram.bot.send_message(chat_id: user.telegram_id,
