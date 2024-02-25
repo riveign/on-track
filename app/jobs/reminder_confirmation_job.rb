@@ -17,8 +17,8 @@ class ReminderConfirmationJob < ApplicationJob
     {
       inline_keyboard: [
         [
-          { text: 'Si', callback_data: "update_r:#{reminder.id}" },
-          { text: 'No', callback_data: 'update_r:no' }
+          { text: " \xE2\x9C\x85 ", callback_data: "update_r:#{reminder.id}" },
+          { text: " \xE2\x9D\x8C ", callback_data: 'update_r:no' }
         ]
       ]
     }

@@ -2,7 +2,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::CallbackQueryContext
   def start!(*_words)
     if (user = User.find_by(telegram_id: from['id']))
-      respond_with :message, text: "Bienvenido, #{user.email}"
+      respond_with :message, text: "Bienvenido, #{user.email} \xF0\x9F\x98\x81 "
     else
       respond_with :message,
                    text: 'Bienvendio a On Track!'
@@ -40,19 +40,20 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def update_dh_callback_query(value = nil, *)
     if value == 'no'
       edit_message('text',
-                   { text: 'Todavia tenes tiempo hoy!' })
+                   { text: "Todavia tenes tiempo hoy, no pierdas la racha! \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	" })
     elsif DailyHabit.find(value).update!(done: true)
       edit_message('text',
-                   { text: 'Felicitaiones, una cosa mas lista hoy!' })
+                   { text: "Felicitaciones, una cosa menos en la lista de hoy! \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A" })
     end
   end
 
   def update_r_callback_query(value = nil, *)
     if value == 'no'
       edit_message('text',
-                   { text: 'Vamos que se puede, no pierdas la racha!' })
+                   { text: "Vamos que se puede! \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	" })
     elsif Reminder.find(value).update!(done: true)
-      edit_message('text', { text: 'Felicitaiones, una cosa mas lista hoy!' })
+      edit_message('text',
+                   { text: "Felicitaciones, una cosa menos en la lista de hoy! \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A" })
     end
   end
 end
