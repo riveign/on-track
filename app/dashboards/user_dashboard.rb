@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class UserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -21,6 +21,9 @@ class UserDashboard < Administrate::BaseDashboard
     telegram_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    day_start: Field::Number,
+    day_end: Field::Number,
+    time_zone: Field::Select.with_options(collection: ActiveSupport::TimeZone.all.map(&:name))
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -40,15 +43,11 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     admin
-    daily_habits
     email
-    encrypted_password
-    habits
-    remember_created_at
-    reminders
-    reset_password_sent_at
-    reset_password_token
     telegram_id
+    day_start
+    day_end
+    time_zone
     created_at
     updated_at
   ].freeze
@@ -58,15 +57,12 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     admin
-    daily_habits
     email
-    encrypted_password
-    habits
     remember_created_at
-    reminders
-    reset_password_sent_at
-    reset_password_token
     telegram_id
+    day_start
+    day_end
+    time_zone
   ].freeze
 
   # COLLECTION_FILTERS
