@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    percentage = params[:user][:on_track_percentage].to_f / 100
-    if @user.update(on_track_percentage: percentage)
+    params[:user][:on_track_percentage] = params[:user][:on_track_percentage].to_f / 100
+    if @user.update(user_params)
       redirect_to @user, notice: 'Actualizado.'
     else
       render :edit
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:on_track_percentage)
+    params.require(:user).permit(:on_track_percentage, :time_zone, :day_start, :day_end)
   end
 end
