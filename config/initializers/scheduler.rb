@@ -14,11 +14,11 @@ scheduler.cron '0 */2 * * *' do
   DailyHabitConfirmationJob.perform_later
 end
 
-scheduler.cron '0 1-23/2 * * *' do
+scheduler.cron '0 */2 * * *' do
   ReminderConfirmationJob.perform_later
 end
 
-scheduler.cron '0 1-23/2 * * *' do
+scheduler.cron '0 */2 * * *' do
   UpcomingReminderNotificationJob.perform_later
 end
 
