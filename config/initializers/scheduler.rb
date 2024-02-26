@@ -6,19 +6,19 @@ scheduler.cron '0 * * * *' do
   DailyHabitCreationJob.perform_later
 end
 
-scheduler.cron '0 * * * *' do
+scheduler.cron '0 */4 * * *' do
   DailyHabitNotificationJob.perform_later
 end
 
-scheduler.cron '0 */2 * * *' do
+scheduler.cron '0 */3 * * *' do
   DailyHabitConfirmationJob.perform_later
 end
 
-scheduler.cron '0 */4 * * *' do
+scheduler.cron '0 */6 * * *' do
   ReminderConfirmationJob.perform_later
 end
 
-scheduler.cron '0 */6 * * *' do
+scheduler.cron '0 */12 * * *' do
   UpcomingReminderNotificationJob.perform_later
 end
 
