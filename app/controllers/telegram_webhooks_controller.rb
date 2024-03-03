@@ -56,4 +56,15 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
                    { text: "Felicitaciones, una cosa menos en la lista de hoy! \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A" })
     end
   end
+
+  def create_dr_callback_query(value = nil, *)
+    result, date = value.split('#')
+    return unless (1..5).include?(result.to_i) && Date.parse(date)
+
+    return unless (user = User.find_by(telegram_id: from['id']))
+
+    DailyRating.create!(user:, rating: result, rated_on: date)
+    edit_message('text',
+                 { text: "Gracias por tu feedback! \xF0\x9F\x98\x81 \xF0\x9F\x98\x81 \xF0\x9F\x98\x81" })
+  end
 end

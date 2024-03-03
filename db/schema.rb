@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_165515) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_124636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_165515) do
     t.bigint "user_id", null: false
     t.index ["habit_id"], name: "index_daily_habits_on_habit_id"
     t.index ["user_id"], name: "index_daily_habits_on_user_id"
+  end
+
+  create_table "daily_ratings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "rating", null: false
+    t.date "rated_on", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "rated_on"], name: "index_daily_ratings_on_user_id_and_rated_on", unique: true
+    t.index ["user_id"], name: "index_daily_ratings_on_user_id"
   end
 
   create_table "habit_types", force: :cascade do |t|
@@ -159,14 +169,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_165515) do
     t.boolean "admin", default: false
     t.decimal "on_track_percentage", precision: 3, scale: 2, default: "1.0"
     t.string "time_zone"
-    t.integer "day_start"
-    t.integer "day_end"
+    t.integer "day_start", default: 8
+    t.integer "day_end", default: 21
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "daily_habits", "habits"
   add_foreign_key "daily_habits", "users"
+  add_foreign_key "daily_ratings", "users"
   add_foreign_key "habits", "habit_types"
   add_foreign_key "habits", "users"
   add_foreign_key "reminders", "users"

@@ -9,6 +9,10 @@ class DailyHabit < ApplicationRecord
 
   scope :not_done, -> { where(done: false) }
 
+  def name
+    habit.name
+  end
+
   private
 
   def habit_is_active_today

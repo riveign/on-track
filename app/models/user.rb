@@ -20,8 +20,17 @@ class User < ApplicationRecord
   END_OF_DAY = 22
 
   def daily_habits_for_today
-    today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
-    daily_habits.where(created_at: today_range, done: false)
+    Time.use_zone(time_zone) do
+      today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+      daily_habits.where(created_at: today_range, done: false)
+    end
+  end
+
+  def all_daily_habits_for_today
+    Time.use_zone(time_zone) do
+      today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+      daily_habits.where(created_at: today_range)
+    end
   end
 
   def active_hours?
@@ -36,9 +45,15 @@ class User < ApplicationRecord
     end
   end
 
-  def start_of_day
+  def start_of_day?
     Time.use_zone(time_zone) do
       return Time.zone.now.hour.eql?(day_start)
+    end
+  end
+
+  def end_of_day?
+    Time.use_zone(time_zone) do
+      return Time.zone.now.hour.eql?(day_end)
     end
   end
 

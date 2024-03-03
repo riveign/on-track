@@ -25,3 +25,7 @@ end
 scheduler.cron '0 * * * *' do
   StartDayNotificationJob.perform_later
 end
+
+scheduler.cron '0 * * * *' do
+  EndDayNotificationJob.perform_later
+end
