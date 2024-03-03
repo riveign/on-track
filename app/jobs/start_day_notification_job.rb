@@ -3,7 +3,7 @@ class StartDayNotificationJob < ApplicationJob
 
   def perform(*_args)
     User.all.each do |user|
-      next unless user.telegram_id && user.start_of_day
+      next unless user.telegram_id && user.start_of_day?
 
       send_messages(user)
     end
@@ -22,7 +22,7 @@ class StartDayNotificationJob < ApplicationJob
     return "Hoy se puede descansar! \xF0\x9F\x92\xA4 \xF0\x9F\x92\xA4 " if habits.empty?
 
     'Un nuevo dia, Una nueva oportunidad de estar On Track! Estas son las cosas para hacer: '\
-    "\n \n \xE2\x97\xBB	 #{habits.map(&:name).join("\n \xE2\x97\xBB	")}"\
+    "\n \n#{habits.map { |habit| "\xE2\x97\xBB	#{habit.name}" }.join("\n")}"\
     "\n "\
     "\n \xF0\x9F\x8F\x84	\xF0\x9F\x8F\x84 \xF0\x9F\x8F\x84	"
   end
