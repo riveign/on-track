@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :habits, dependent: :destroy
   has_many :daily_habits, dependent: :destroy
   has_many :reminders, dependent: :destroy
+  has_many :daily_ratings, dependent: :destroy
 
   before_create :set_default_values
 

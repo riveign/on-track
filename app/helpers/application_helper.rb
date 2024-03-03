@@ -15,4 +15,21 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def rating_emoji(rating)
+    case rating
+    when 1
+      '😔' # Least happy
+    when 2
+      '🙁'
+    when 3
+      '😐'
+    when 4
+      '🙂'
+    when 5
+      '😄' # Most happy
+    else
+      '' # No emoji
+    end
+  end
 end
