@@ -1,0 +1,13 @@
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-success text-white">
+    <h5 class="mb-0">Resultado del Día</h5>
+  </div>
+  <div class="card-body text-center">
+    <% if @daily_rating.present? %>
+      <p class="card-text" style="font-size: 2rem;""><%= rating_emoji(@daily_rating.rating) %> (<%= @daily_rating.rating %>)</p>
+    <% else %>
+      <p class="card-text">No hay resultado registrado</p>
+    <% end %>
+  </div>
+
+</div>

@@ -27,11 +27,11 @@ class HomeController < ApplicationController
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'new_reminder_or_habit')
   end
 
-  def calendar
+  def calendar # rubocop:disable Metrics/AbcSize
     @selected_date = (params[:date].present? ? Date.parse(params[:date]) : Date.today).all_day
-    puts @selected_date
     @daily_habits = current_user.daily_habits.where(created_at: @selected_date)
     @reminders = current_user.reminders.where(due_date: @selected_date)
+    @daily_rating = current_user.daily_ratings.find_by(rated_on: @selected_date)
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'calendar')
   end
 end

@@ -13,5 +13,6 @@
       </div>
     </div>
   </div>
+  <%= render partial: 'daily_rating', locals: { daily_rating: @daily_rating }%>
   <%= render partial: 'daily_actions', locals: { reminders: @reminders, daily_habits: @daily_habits } %>
 <% end %>
