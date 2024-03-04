@@ -58,6 +58,14 @@ class User < ApplicationRecord
     end
   end
 
+  def ratings_for_last_days(days = 30)
+    end_date = Date.today
+    start_date = end_date - days.days
+    ratings = daily_ratings.where(rated_on: start_date..end_date).pluck(:rated_on, :rating).to_h
+
+    (start_date..end_date).map { |date| [date, ratings[date] || 0] }
+  end
+
   private
 
   def set_default_values

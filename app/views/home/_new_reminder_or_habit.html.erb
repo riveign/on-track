@@ -1,4 +1,14 @@
 <%= turbo_frame_tag "content_frame" do %>
   <%= render partial: 'reminders/form', locals: { reminder: Reminder.new} %>
   <%= render partial: 'habits/form', locals: { habit: Habit.new} %>
+  <div class="mt-4">
+      <div class="card mb-4 shadow-sm"> 
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">Habitos</h5> 
+        </div>
+        <div class="card-body">
+          <%= render partial: 'habits/habit_list', locals: { habits: @habits} %>
+        </div>
+      </div>
+    </div>
 <% end %>

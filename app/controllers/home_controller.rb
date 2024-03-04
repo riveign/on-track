@@ -24,6 +24,7 @@ class HomeController < ApplicationController
   end
 
   def new_reminder_or_habit
+    @habits = current_user.habits
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'new_reminder_or_habit')
   end
 
