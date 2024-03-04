@@ -93,3 +93,7 @@ gem 'telegram-bot', '~> 0.16.1'
 gem 'serviceworker-rails', '~> 0.6.0'
 
 gem 'administrate', '~> 0.20.1'
+
+gem 'groupdate', '~> 6.4'
+
+gem "chartkick", "~> 5.0"
