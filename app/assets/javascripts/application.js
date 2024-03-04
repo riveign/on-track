@@ -1,7 +1,3 @@
-import Chartkick from "chartkick";
-import Chart from "chart.js";
-Chartkick.addAdapter(Chart);
-
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("/service_worker.js").then(

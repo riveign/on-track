@@ -18,7 +18,6 @@ class HomeController < ApplicationController
   end
 
   def list_all_habits
-    @daily_ratings_data = current_user.ratings_for_last_days(30)
     @habits = current_user.habits
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'habits_actions',
                                                                locals: { habits: @habits })
