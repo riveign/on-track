@@ -6,5 +6,7 @@ class ReminderNotificationJob < ApplicationJob
 
     Telegram.bot.send_message(chat_id: reminder.user.telegram_id,
                               text: reminder.telegram_notification)
+  rescue StandardError => e
+    Rails.logger.error "Failed to send message via Telegram: #{e.message}"
   end
 end

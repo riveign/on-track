@@ -9,6 +9,8 @@ class ReminderConfirmationJob < ApplicationJob
         Telegram.bot.send_message(chat_id: user.telegram_id,
                                   text: "Te acordaste de #{reminder.title}?",
                                   reply_markup: reply_markup(reminder))
+      rescue StandardError => e
+        Rails.logger.error "Failed to send message via Telegram: #{e.message}"
       end
     end
   end

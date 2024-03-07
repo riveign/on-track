@@ -16,6 +16,8 @@ class StartDayNotificationJob < ApplicationJob
                               text: habits_texts(user.habits.active))
     Telegram.bot.send_message(chat_id: user.telegram_id,
                               text: reminders_texts(user.reminders.due_today))
+  rescue StandardError => e
+    Rails.logger.error "Failed to send message via Telegram: #{e.message}"
   end
 
   def habits_texts(habits)
