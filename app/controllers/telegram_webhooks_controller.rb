@@ -23,7 +23,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def stop!(*_words)
-    if user = User.find_by(telegram_id: from['id'])
+    if (user = User.find_by(telegram_id: from['id']))
       user.update!(telegram_id: nil)
       respond_with :message, text: "Adios, #{user.email}, no te enviaremos mas recordatorios"
     else

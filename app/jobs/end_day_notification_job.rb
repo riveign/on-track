@@ -3,7 +3,7 @@ class EndDayNotificationJob < ApplicationJob
 
   def perform(*_args)
     User.all.each do |user|
-      next unless user.telegram_id && user.end_of_day?
+      next unless user.telegram_id
 
       send_messages(user)
     end
@@ -17,6 +17,8 @@ class EndDayNotificationJob < ApplicationJob
     Telegram.bot.send_message(chat_id: user.telegram_id,
                               text: 'Como te sentiste hoy?',
                               reply_markup: daily_rating_message)
+  rescue StandardError => e
+    Rails.logger.error "Failed to send message via Telegram: #{e.message}"
   end
 
   def daily_habits_text(daily_habits)
