@@ -1,7 +1,7 @@
 class ReminderConfirmationJob < ApplicationJob
   queue_as :default
 
-  def perform
+  def perform # rubocop:disable Metrics/AbcSize
     User.all.each do |user|
       next unless user.telegram_id && user.reminders.due_today.any? && user.active_hours?
 
