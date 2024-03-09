@@ -3,7 +3,7 @@ class EndDayNotificationJob < ApplicationJob
 
   def perform(*_args)
     User.all.each do |user|
-      next unless user.telegram_id
+      next unless user.telegram_id && user.end_of_day?
 
       send_messages(user)
     end
