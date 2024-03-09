@@ -7,7 +7,7 @@ class DailyHabitConfirmationJob < ApplicationJob
 
       user.daily_habits_for_today.sample(1).each do |daily_habit|
         Telegram.bot.send_message(chat_id: user.telegram_id,
-                                  text: "Hoy hiciste #{daily_habit.habit.name}?",
+                                  text: text(daily_habit),
                                   reply_markup: reply_markup(daily_habit))
       rescue StandardError => e
         Rails.logger.error "Failed to send message via Telegram: #{e.message}"
@@ -15,12 +15,18 @@ class DailyHabitConfirmationJob < ApplicationJob
     end
   end
 
+  private
+
+  def text(daily_habit)
+    I18n.t('telegram.daily_habit.confirmation', daily_habit: daily_habit.habit.name)
+  end
+
   def reply_markup(daily_habit)
     {
       inline_keyboard: [
         [
-          { text: " \xE2\x9C\x85 ", callback_data: "update_dh:#{daily_habit.id}" },
-          { text: " \xE2\x9D\x8C ", callback_data: 'update_dh:no' }
+          { text: emoji(:green_check), callback_data: "update_dh:#{daily_habit.id}" },
+          { text: emoji(:red_cross), callback_data: 'update_dh:no' }
         ]
       ]
     }

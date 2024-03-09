@@ -1,4 +1,5 @@
 class Reminder < ApplicationRecord
+  include EmojisHelper
   belongs_to :user
 
   validates :title, presence: true
@@ -22,9 +23,9 @@ class Reminder < ApplicationRecord
 
   def telegram_notification
     if days_until_due >= 1
-      "No te olvides de #{title} para dentro de #{days_until_due} dias! \xE2\x8F\xB0	\xE2\x8F\xB0	\xE2\x8F\xB0"
+      I18n.t('telegram.reminders.notification', title:, days_until_due:) + emoji(:clock, 3)
     else
-      "No te olvides de #{title} para hoy! \xE2\x9A\xA0 \xE2\x9A\xA0 \xE2\x9A\xA0"
+      I18n.t('telegram.reminders.notification_today', title:) + emoji(:warning, 3)
     end
   end
 

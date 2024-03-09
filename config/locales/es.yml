@@ -20,8 +20,23 @@ es:
     daily_habit:
       motivation: "Todavia tenes tiempo hoy, no pierdas la racha!"
       congratulations: "Felicitaciones, una cosa menos en la lista de hoy!"
+      confirmation: "Pudiste %{daily_habit}?"
+      done: "Vamos! %{title} listo!"
+      reminder: "Hoy no te olvides de %{daily_habit}!"
     reminders:
       motivation: "Vamos que se puede!"
       congratulations: "Felicitaciones, una cosa menos en la lista de hoy!"
+      question: "Te acordaste de %{title}?"
+      notification: "No te olvides de %{title} para dentro de %{days_until_due} dias!"
+      notification_today: "No te olvides de %{title} para hoy!"
     daily_rating:
       thanks: "Gracias por tu feedback!"
+      question: "Como te sentiste hoy?"
+    end_day:
+      empty: "Llegamos al final del dia, hoy fue un dia para fluir!"
+      introduction: "Estamos llegando al final del dia! Este es el resumen de hoy: "
+    start_day:
+      empty_habits: "Hoy se puede descansar!"
+      empty_reminders: "No hay recordatorios para hoy!"
+      introduction_habits: "Un nuevo dia, Una nueva oportunidad de estar On Track! Estas son las cosas para hacer: "
+      introduction_remidners: "Estos son los recordatorios para hoy: "

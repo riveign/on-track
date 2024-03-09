@@ -3,7 +3,8 @@ class UpdateDailyHabitJob < ApplicationJob
 
   def perform(daily_habit:, user:)
     Telegram.bot.send_message(chat_id: user.telegram_id,
-                              text: "Eso! #{daily_habit.habit.name} \xE2\x9C\x85")
+                              text: I18n.t('telegram.daily_habit.done',
+                                           title: daily_habit.habit.name) + emoji(:green_check))
   rescue StandardError => e
     Rails.logger.error "Failed to send message via Telegram: #{e.message}"
   end
