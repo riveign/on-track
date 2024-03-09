@@ -21,20 +21,20 @@ class StartDayNotificationJob < ApplicationJob
   end
 
   def habits_texts(habits)
-    return "Hoy se puede descansar! \xF0\x9F\x92\xA4 \xF0\x9F\x92\xA4 " if habits.empty?
+    return I18n.t('telegram.start_day.empty_habits') + emoji(:sleeping) if habits.empty?
 
-    'Un nuevo dia, Una nueva oportunidad de estar On Track! Estas son las cosas para hacer: '\
-    "\n \n#{habits.map { |habit| "\xE2\x97\xBB	#{habit.name}" }.join("\n")}"\
-    "\n "\
-    "\n \xF0\x9F\x8F\x84	\xF0\x9F\x8F\x84 \xF0\x9F\x8F\x84	"
+    I18n.t('telegram.start_day.introduction_habits') +
+      "\n \n#{habits.map { |habit| "#{emoji(:not_done)}	#{habit.name}" }.join("\n")}"\
+      "\n "\
+      "\n "	+ emoji(:surfer, 3)
   end
 
   def reminders_texts(reminders)
-    return 'No hay recordatorios para hoy!' if reminders.empty?
+    return I18n.t('telegram.start_day.empty_reminders') if reminders.empty?
 
-    'Estos son los recordatorios para hoy: '\
-    "\n \n \xE2\x97\xBB	 #{reminders.map(&:title).join("\n \xE2\x97\xBB	 ")}"\
-    "\n "\
-    "\n \xF0\x9F\x95\x90	\xF0\x9F\x95\x90 \xF0\x9F\x95\x90 "
+    I18n.t('telegram.start_day.introduction_reminders') +
+      "\n \n#{reminders.map { |reminder| "#{emoji(:not_done)}	#{reminder.title}" }.join("\n")}"\
+      "\n "\
+      "\n " + emoji(:clock, 3)
   end
 end

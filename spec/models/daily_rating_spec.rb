@@ -5,19 +5,19 @@ RSpec.describe DailyRating, type: :model do # rubocop:disable Metrics/BlockLengt
     it 'should validate that rating is present' do
       daily_rating = DailyRating.new(rating: nil)
       daily_rating.valid?
-      expect(daily_rating.errors[:rating]).to include("can't be blank")
+      expect(daily_rating.errors[:rating]).to include(I18n.t('errors.messages.blank'))
     end
 
     it 'should validate that rating is between 1 and 5' do
       daily_rating = DailyRating.new(rating: 6)
       daily_rating.valid?
-      expect(daily_rating.errors[:rating]).to include('is not included in the list')
+      expect(daily_rating.errors[:rating]).to include(I18n.t('errors.messages.inclusion'))
     end
 
     it 'should validate that rated_on is present' do
       daily_rating = DailyRating.new(rated_on: nil)
       daily_rating.valid?
-      expect(daily_rating.errors[:rated_on]).to include("can't be blank")
+      expect(daily_rating.errors[:rated_on]).to include(I18n.t('errors.messages.blank'))
     end
 
     it 'should validate that user_id is unique for a given rated_on' do
@@ -25,7 +25,7 @@ RSpec.describe DailyRating, type: :model do # rubocop:disable Metrics/BlockLengt
       create(:daily_rating, user:, rated_on: Date.today)
       daily_rating = DailyRating.new(user:, rated_on: Date.today)
       daily_rating.valid?
-      expect(daily_rating.errors[:user_id]).to include('has already been taken')
+      expect(daily_rating.errors[:user_id]).to include(I18n.t('errors.messages.taken'))
     end
   end
 

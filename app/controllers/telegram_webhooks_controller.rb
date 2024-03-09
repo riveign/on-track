@@ -1,59 +1,61 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::CallbackQueryContext
+  include EmojisHelper
+
   def start!(*_words)
     if (user = User.find_by(telegram_id: from['id']))
-      respond_with :message, text: "Bienvenido, #{user.email} \xF0\x9F\x98\x81 "
+      respond_with :message, text: "#{t('telegram.start_email', email: user.email)} #{emoji(:happy_face)} "
     else
       respond_with :message,
-                   text: 'Bienvendio a On Track!'
-      respond_with :message, text: 'Si ya tienes una cuenta, puedes vincularla con tu telegram en /register <email>'
-      respond_with :message, text: "De otro modo crea una cuenta en #{ENV['DEVELOPMENT_HOSTS']}/users/sign_up"
+                   text: t('telegram.start_welcome_1')
+      respond_with :message, text: t('telegram.start_welcome_2')
+      respond_with :message, text: t('telegram.start_welcome_3', host: ENV['DEVELOPMENT_HOSTS'])
     end
   end
 
   def register!(word = nil, *_other_words)
     if (user = User.find_by(telegram_id: from['id'])) || (word.present? && (user = User.find_by(email: word)))
       user.update!(telegram_id: from['id'])
-      respond_with :message, text: "Bienvenido, #{user.email}"
+      respond_with :message, text: t('telegram.start_email', email: user.email)
     else
       respond_with :message,
-                   text: 'Si ya tienes una cuenta, puedes vincularla con tu telegram en /register <email>'
-      respond_with :message, text: "De otro modo crea una cuenta en #{ENV['DEVELOPMENT_HOSTS']}/users/sign_up"
+                   text: t('telegram.start_welcome_2')
+      respond_with :message, text: t('telegram.start_welcome_3', host: ENV['DEVELOPMENT_HOSTS'])
     end
   end
 
   def stop!(*_words)
     if (user = User.find_by(telegram_id: from['id']))
       user.update!(telegram_id: nil)
-      respond_with :message, text: "Adios, #{user.email}, no te enviaremos mas recordatorios"
+      respond_with :message, text: t('telegram.stop.goodbye', email: user.email)
     else
-      respond_with :message, text: 'No estas registrado'
+      respond_with :message, text: t('telegram.stop.not_registered')
     end
   end
 
   def help!(*)
-    respond_with :message, text: 'Utiliza /start para comenzar'
-    respond_with :message, text: 'Utiliza /register <email> para vincular tu cuenta'
-    respond_with :message, text: 'Utiliza /stop para descatviar los recordatorios'
+    respond_with :message, text: t('telegram.help.start')
+    respond_with :message, text: t('telegram.help.register')
+    respond_with :message, text: t('telegram.help.stop')
   end
 
   def update_dh_callback_query(value = nil, *)
     if value == 'no'
       edit_message('text',
-                   { text: "Todavia tenes tiempo hoy, no pierdas la racha! \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	" })
+                   { text: "#{t('telegram.daily_habit.motivation')}	#{emoji(:strength, 3)} " })
     elsif DailyHabit.find(value).update!(done: true)
       edit_message('text',
-                   { text: "Felicitaciones, una cosa menos en la lista de hoy! \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A" })
+                   { text: "#{t('telegram.daily_habit.congratulations')}  #{emoji(:celebration, 3)} " })
     end
   end
 
   def update_r_callback_query(value = nil, *)
     if value == 'no'
       edit_message('text',
-                   { text: "Vamos que se puede! \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	 \xF0\x9F\x92\xAA	" })
+                   { text: "#{t('telegram.reminders.motivation')} #{emoji(:strength, 3)} " })
     elsif Reminder.find(value).update!(done: true)
       edit_message('text',
-                   { text: "Felicitaciones, una cosa menos en la lista de hoy! \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A \xF0\x9F\x8E\x8A" })
+                   { text: "#{t('telegram.reminders.congratulations')}  #{emoji(:celebration, 3)} " })
     end
   end
 
@@ -65,6 +67,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     DailyRating.create!(user:, rating: result, rated_on: date)
     edit_message('text',
-                 { text: "Gracias por tu feedback! \xF0\x9F\x98\x81 \xF0\x9F\x98\x81 \xF0\x9F\x98\x81" })
+                 { text: "#{t('telegram.daily_rating.thanks')} #{emoji(:happy_face, 3)}" })
   end
 end
