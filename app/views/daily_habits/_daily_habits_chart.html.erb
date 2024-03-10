@@ -1,17 +1,28 @@
-<%= column_chart daily_habit_chart, stacked: true, library: {
-  title: {text: 'Completed Habits in the Last 30 Days', x: -20},
-  yAxis: {
+<%= column_chart daily_habit_chart, stacked: true, title: t('graphs.daily_habit_per_day.title'),
+  dataset: {
+      barPercentage: 0.5,
+      barThickness: 10,
+    },
+  library: {
+    title: {
+      style: { color: "#333", fontSize: "20px", fontWeight: "bold" }
+    },
+    yAxis: {
       allowDecimals: false,
       title: {
-          text: 'Habits Count'
+        text: 'Habits Count',
+        style: { color: "#333", fontSize: "14px" }
       }
-  },
-  xAxis: {
+    },
+    xAxis: {
       title: {
-          text: 'Date'
+        style: { color: "#333", fontSize: "14px" }
+      },
+      labels: {
+        style: { color: "#333", fontSize: "12px" }
       }
-  },
-  legend: {
+    },
+    legend: {
       layout: 'vertical',
       align: 'right',
       verticalAlign: 'top',
@@ -20,18 +31,30 @@
       floating: true,
       borderWidth: 1,
       backgroundColor: '#FFFFFF',
-      shadow: true
-  },
-  tooltip: {
-      headerFormat: '<b>{series.name}</b><br>',
-      pointFormat: '{point.x:%e. %b}: {point.y} completed'
-  },
-  plotOptions: {
-      column: {
-          stacking: 'normal',
-          dataLabels: {
-              enabled: true
-          }
+      shadow: true,
+      itemStyle: {
+        color: '#333',
+        fontSize: '12px'
       }
+    },
+    tooltip: {
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      style: {
+        color: '#FFF'
+      }
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: true,
+          style: {
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: 'white'
+          }
+        }
+      }
+    }
   }
-} %>
+%>

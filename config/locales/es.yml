@@ -7,6 +7,9 @@ es:
   date:
     month_names: [nil, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     abbr_month_names: [nil, "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+  graphs:
+    daily_habit_per_day:
+      title: "Hbitos cumplidos (30 dias)"
   telegram:
     start_email: "Bienvenido %{email}"
     start_welcome_1: "Bienvendio a On Track!"
