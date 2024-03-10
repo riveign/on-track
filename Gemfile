@@ -97,3 +97,5 @@ gem 'administrate', '~> 0.20.1'
 gem 'groupdate', '~> 6.4'
 
 gem "chartkick", "~> 5.0"
+
+gem "rollbar", "~> 3.5"
