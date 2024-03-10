@@ -12,9 +12,10 @@
       <h5 class="mb-0">Grafica</h5> 
     </div>
     <div class="card-body">
-      <%= line_chart @habits.map { |habit|
-        {name: habit.name, data: habit.daily_habits.where(done: true).group_by_day(:created_at).count} 
-        }%>
+      <%= column_chart @success_rates_over_time, stacked: true, height: '500px', library: { 
+        title: { text: 'Daily Habit Completion Over the Last 30 Days', x: -20 }, 
+        yAxis: { title: { text: 'Number of Completions' }}, 
+        xAxis: { title: { text: 'Date' }} } %>
     </div>
   </div>
 <% end %>

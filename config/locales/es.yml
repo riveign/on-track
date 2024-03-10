@@ -4,7 +4,9 @@ es:
       blank: "no puede ser vacio"
       inclusion: "no es una opcion valida"
       taken: "ya fue tomado"
-
+  date:
+    month_names: [nil, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+    abbr_month_names: [nil, "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
   telegram:
     start_email: "Bienvenido %{email}"
     start_welcome_1: "Bienvendio a On Track!"

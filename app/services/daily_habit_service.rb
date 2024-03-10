@@ -1,5 +1,3 @@
-# app/services/daily_habit_service.rb
-
 class DailyHabitService
   def initialize(user)
     @user = user
