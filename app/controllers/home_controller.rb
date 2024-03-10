@@ -19,6 +19,7 @@ class HomeController < ApplicationController
 
   def list_all_habits
     @habits = current_user.habits
+    @daily_habit_chart = DailyHabitGraphService.new(@current_user).calculate
     render turbo_stream: turbo_stream.replace('content_frame', partial: 'habits_actions',
                                                                locals: { habits: @habits })
   end
