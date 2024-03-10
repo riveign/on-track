@@ -1,0 +1,37 @@
+<%= column_chart daily_habit_chart, stacked: true, library: {
+  title: {text: 'Completed Habits in the Last 30 Days', x: -20},
+  yAxis: {
+      allowDecimals: false,
+      title: {
+          text: 'Habits Count'
+      }
+  },
+  xAxis: {
+      title: {
+          text: 'Date'
+      }
+  },
+  legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'top',
+      x: -40,
+      y: 80,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor: '#FFFFFF',
+      shadow: true
+  },
+  tooltip: {
+      headerFormat: '<b>{series.name}</b><br>',
+      pointFormat: '{point.x:%e. %b}: {point.y} completed'
+  },
+  plotOptions: {
+      column: {
+          stacking: 'normal',
+          dataLabels: {
+              enabled: true
+          }
+      }
+  }
+} %>

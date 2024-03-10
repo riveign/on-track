@@ -12,10 +12,7 @@
       <h5 class="mb-0">Grafica</h5> 
     </div>
     <div class="card-body">
-      <%= column_chart @success_rates_over_time, stacked: true, height: '500px', library: { 
-        title: { text: 'Daily Habit Completion Over the Last 30 Days', x: -20 }, 
-        yAxis: { title: { text: 'Number of Completions' }}, 
-        xAxis: { title: { text: 'Date' }} } %>
+      <%= render partial: 'daily_habits/daily_habits_chart', locals: { daily_habit_chart: @daily_habit_chart} %>
     </div>
   </div>
 <% end %>
