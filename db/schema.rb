@@ -169,8 +169,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_194221) do
     t.boolean "admin", default: false
     t.decimal "on_track_percentage", precision: 3, scale: 2, default: "1.0"
     t.string "time_zone"
-    t.integer "day_start"
-    t.integer "day_end"
+    t.integer "day_start", default: 8
+    t.integer "day_end", default: 21
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
