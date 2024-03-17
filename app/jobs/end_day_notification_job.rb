@@ -17,6 +17,8 @@ class EndDayNotificationJob < ApplicationJob
     Telegram.bot.send_message(chat_id: user.telegram_id,
                               text: I18n.t('telegram.daily_rating.question'),
                               reply_markup: daily_rating_message)
+    Telegram.bot.send_message(chat_id: user.telegram_id,
+                              text: I18n.t('telegram.help.review_day'))
   rescue StandardError => e
     Rails.logger.error "Failed to send message via Telegram: #{e.message}"
   end

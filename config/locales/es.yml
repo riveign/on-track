@@ -22,6 +22,7 @@ es:
       start: "Utiliza /start para comenzar"
       register: "Utiliza /register <email> para vincular tu cuenta"
       stop: "Utiliza /stop para descatviar los recordatorios"
+      review_day: "Utiliza /review_day para revisar los habitos activos"
     daily_habit:
       motivation: "Todavia tenes tiempo hoy, no pierdas la racha!"
       congratulations: "Felicitaciones, una cosa menos en la lista de hoy!"
@@ -34,6 +35,9 @@ es:
       question: "Te acordaste de %{title}?"
       notification: "No te olvides de %{title} para dentro de %{days_until_due} dias!"
       notification_today: "No te olvides de %{title} para hoy!"
+    review_day:
+      start_review: "Comencemos con la revision del dia"
+      no_daily_habits: "Ya no tienes habitos para revisar!"
     daily_rating:
       thanks: "Gracias por tu feedback!"
       question: "Como te sentiste hoy?"
