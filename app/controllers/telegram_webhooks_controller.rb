@@ -37,7 +37,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     help_messages = [
       t('telegram.help.start'),
       t('telegram.help.register'),
-      t('telegram.help.stop')
+      t('telegram.help.stop'),
+      t('telegram.help.review_day')
     ]
     respond_with_multiple_messages(help_messages)
   end

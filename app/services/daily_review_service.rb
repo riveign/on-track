@@ -1,5 +1,6 @@
 # app/services/daily_review_service.rb
 class DailyReviewService
+  include EmojisHelper
   def self.perform(daily_habit_ids)
     new(daily_habit_ids).perform
   end
@@ -27,8 +28,8 @@ class DailyReviewService
     {
       inline_keyboard: [
         [
-          { text: '✅', callback_data: "update_dh_review:#{daily_habit.id}%#{remaining_ids}" },
-          { text: '❌', callback_data: "update_dh_review:no%#{remaining_ids}" }
+          { text: emoji(:green_check), callback_data: "update_dh_review:#{daily_habit.id}%#{remaining_ids}" },
+          { text: emoji(:red_cross), callback_data: "update_dh_review:no%#{remaining_ids}" }
         ]
       ]
     }
