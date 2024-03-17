@@ -5,7 +5,7 @@ class DailyHabitConfirmationJob < ApplicationJob
     User.all.each do |user|
       next unless user.telegram_id && user.daily_habits_for_today.any? && user.active_hours?
 
-      user.daily_habits_for_today.sample(1).each do |daily_habit|
+      user.daily_habits_for_today.sample(2).each do |daily_habit|
         Telegram.bot.send_message(chat_id: user.telegram_id,
                                   text: text(daily_habit),
                                   reply_markup: reply_markup(daily_habit))

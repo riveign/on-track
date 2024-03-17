@@ -36,6 +36,7 @@ es:
       notification_today: "No te olvides de %{title} para hoy!"
     review_day:
       start_review: "Comencemos con la revision del dia"
+      no_daily_habits: "Ya no tienes habitos para revisar!"
     daily_rating:
       thanks: "Gracias por tu feedback!"
       question: "Como te sentiste hoy?"
