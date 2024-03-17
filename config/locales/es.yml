@@ -34,6 +34,8 @@ es:
       question: "Te acordaste de %{title}?"
       notification: "No te olvides de %{title} para dentro de %{days_until_due} dias!"
       notification_today: "No te olvides de %{title} para hoy!"
+    review_day:
+      start_review: "Comencemos con la revision del dia"
     daily_rating:
       thanks: "Gracias por tu feedback!"
       question: "Como te sentiste hoy?"

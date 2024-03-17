@@ -39,6 +39,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: t('telegram.help.stop')
   end
 
+  def review_day!(_word = nil, *_other_words)
+    return unless (user = User.find_by(telegram_id: from['id']))
+
+    respond_with :message, text: t('telegram.review_day.start_review')
+  end
+
   def update_dh_callback_query(value = nil, *)
     if value == 'no'
       edit_message('text',
