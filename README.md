@@ -18,6 +18,16 @@ To set up On Track locally, follow these steps:
 1. Create a new Telegram bot using BotFather
 2. Update the Telegram bot token in the environment .env file
 
+### Updating Telegram Bot Token
+
+1. Create a new Telegram bot using BotFather
+2. Update the Telegram bot token in the environment credentials
+3. For production update the webhook configuration running the following command
+
+```bash
+rake telegram:bot:set_webhook RAILS_ENV=production
+```
+
 ### Installation
 
 1. Bundle install
