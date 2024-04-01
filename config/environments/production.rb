@@ -93,7 +93,7 @@ Rails.application.configure do
                                                      Rails.root.join('tmp', 'session_store')
 
   # Set application domain, to be able to run `rake telegram:bot:set_webhook`
-  routes.default_url_options = { host: 'on-track-production.up.railway.app', protocol: 'https' }
+  routes.default_url_options = { host: 'on-track.cloud', protocol: 'https' }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
@@ -102,5 +102,5 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.hosts << ['on-track-production.up.railway.app', "/.*\.on-track\.cloud/"]
+  config.hosts << ['on-track-production.up.railway.app', /.*\.on-track\.cloud/]
 end
